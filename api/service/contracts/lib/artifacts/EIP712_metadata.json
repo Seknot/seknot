@@ -1,0 +1,69 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "EIP712_DOMAIN_TYPEHASH",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"title": "EIP712",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"notice": "A library that provides EIP712 helper functions",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/lib/EIP712.sol": "EIP712"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/lib/ECRecover.sol": {
+			"keccak256": "0x7ca190bde28972b9464be1d282243c1548c4d6fac8012d5a52683262bd6208b5",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://89e19b5d06980a4f05b58c32d6db0ff396bdbf47a6f6a72af19ea6c1879b76f2",
+				"dweb:/ipfs/QmeCWHH4og3BewFAD5rwEPdGPDxbpx5ZazjBybCEEyoUrV"
+			]
+		},
+		"contracts/lib/EIP712.sol": {
+			"keccak256": "0x676b81d5a8ad375ede0fe42f697e279c011412ec8ad43e9dae74e53cf6fae0c4",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://41d010cc8ccd5924f3ab5b584a51a2b92a38545dc2740acab19d20bb3c005862",
+				"dweb:/ipfs/QmcmHZ7Muu8CStnBKcjDttEHnMnar5qQhJMg3KDkUbRnpM"
+			]
+		}
+	},
+	"version": 1
+}

@@ -9,7 +9,7 @@ export default {
     titleTemplate: '%s - front',
     title: 'front',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'jp'
     },
     meta: [
       { charset: 'utf-8' },
