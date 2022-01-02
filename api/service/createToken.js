@@ -16,7 +16,7 @@ const provider = ethers.getDefaultProvider(config["network"], {
 
 let compiled = require(`./build/Token.json`);
 
-async function deployToken(network, tokenName, tokenVersion, tokenSymbol, tokenDecimals, tokenTotalSupply) {
+async function createToken(network, tokenName, tokenVersion, tokenSymbol, tokenDecimals, tokenTotalSupply) {
 
     // Load Service Wallet for Deploy
     const wallet = new ethers.Wallet(config["private_key"], provider);
