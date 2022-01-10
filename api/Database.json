@@ -1,0 +1,14 @@
+{
+  "user": {
+    "id": "1",
+    "name": "John Doe",
+    "email": "kouichi.hirachi@gmail.com"
+  },
+  "token": {
+    "tokenName": "HackToken",
+    "totalSupply": "1000000",
+    "version": "",
+    "symbol": "",
+    "Decimals": ""
+  }
+}

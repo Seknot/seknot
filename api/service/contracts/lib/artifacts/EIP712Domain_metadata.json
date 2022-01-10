@@ -1,64 +1,64 @@
 {
-	"compiler": {
-		"version": "0.8.7+commit.e28d00a7"
-	},
-	"language": "Solidity",
-	"output": {
-		"abi": [
-			{
-				"inputs": [],
-				"name": "DOMAIN_SEPARATOR",
-				"outputs": [
-					{
-						"internalType": "bytes32",
-						"name": "",
-						"type": "bytes32"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			}
-		],
-		"devdoc": {
-			"kind": "dev",
-			"methods": {},
-			"stateVariables": {
-				"DOMAIN_SEPARATOR": {
-					"details": "EIP712 Domain Separator"
-				}
-			},
-			"version": 1
-		},
-		"userdoc": {
-			"kind": "user",
-			"methods": {},
-			"version": 1
-		}
-	},
-	"settings": {
-		"compilationTarget": {
-			"contracts/lib/EIP712Domain.sol": "EIP712Domain"
-		},
-		"evmVersion": "london",
-		"libraries": {},
-		"metadata": {
-			"bytecodeHash": "ipfs"
-		},
-		"optimizer": {
-			"enabled": false,
-			"runs": 200
-		},
-		"remappings": []
-	},
-	"sources": {
-		"contracts/lib/EIP712Domain.sol": {
-			"keccak256": "0x81e2593665f43cc4da2945da1f7aa72fda1fcae3ab236f4b46793765656182d5",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://9f31fc8847d034369148ec8652d7e8c06712d9035f9402d721003f7a3d129664",
-				"dweb:/ipfs/QmYbP6j4RRZVDApNAyMNma4fKPy2ezjXGUDVKTWGoR4Tfq"
-			]
-		}
-	},
-	"version": 1
+  "compiler": {
+    "version": "0.8.7+commit.e28d00a7"
+  },
+  "language": "Solidity",
+  "output": {
+    "abi": [
+      {
+        "inputs": [],
+        "name": "DOMAIN_SEPARATOR",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      }
+    ],
+    "devdoc": {
+      "kind": "dev",
+      "methods": {},
+      "stateVariables": {
+        "DOMAIN_SEPARATOR": {
+          "details": "EIP712 Domain Separator"
+        }
+      },
+      "version": 1
+    },
+    "userdoc": {
+      "kind": "user",
+      "methods": {},
+      "version": 1
+    }
+  },
+  "settings": {
+    "compilationTarget": {
+      "contracts/lib/EIP712Domain.sol": "EIP712Domain"
+    },
+    "evmVersion": "london",
+    "libraries": {},
+    "metadata": {
+      "bytecodeHash": "ipfs"
+    },
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "remappings": []
+  },
+  "sources": {
+    "contracts/lib/EIP712Domain.sol": {
+      "keccak256": "0x81e2593665f43cc4da2945da1f7aa72fda1fcae3ab236f4b46793765656182d5",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://9f31fc8847d034369148ec8652d7e8c06712d9035f9402d721003f7a3d129664",
+        "dweb:/ipfs/QmYbP6j4RRZVDApNAyMNma4fKPy2ezjXGUDVKTWGoR4Tfq"
+      ]
+    }
+  },
+  "version": 1
 }

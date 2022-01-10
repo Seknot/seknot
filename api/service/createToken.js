@@ -16,7 +16,13 @@ const provider = ethers.getDefaultProvider(config["network"], {
 
 let compiled = require(`./build/Token.json`);
 
-async function createToken(network, tokenName, tokenVersion, tokenSymbol, tokenDecimals, tokenTotalSupply) {
+exports.createToken = async function (network, tokenName, tokenVersion, tokenSymbol, tokenDecimals, tokenTotalSupply) {
+
+    console.log(`Name:          ${tokenName}`);
+    console.log(`Version:       ${tokenVersion}`);
+    console.log(`Symbol:        ${tokenSymbol}`);
+    console.log(`Decimals:      ${tokenDecimals}`);
+    console.log(`Total Supply:  ${tokenTotalSupply}`);
 
     // Load Service Wallet for Deploy
     const wallet = new ethers.Wallet(config["private_key"], provider);

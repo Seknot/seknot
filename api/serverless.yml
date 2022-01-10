@@ -1,5 +1,5 @@
 org: kou3141
-app: hackcoin-api-aws
+app: seknot-api
 service: seknot-api
 
 provider:
@@ -15,14 +15,17 @@ provider:
         - dynamodb:PutItem
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
-      Resource: 'arn:aws:dynamodb:${self:provider.region}:*:table/Users'
+      Resource:
+        - 'arn:aws:dynamodb:${self:provider.region}:*:table/Users'
+        - 'arn:aws:dynamodb:${self:provider.region}:*:table/Wallets'
+        - 'arn:aws:dynamodb:${self:provider.region}:*:table/Tokens'
 
 package:
   exclude:
     - .git/**
     - test/**
     - README.md
-    - utils/**
+    - script/**
 
 functions:
   serverlessTest:
@@ -39,7 +42,33 @@ resources:
         TableName: Users
         AttributeDefinitions:
           - AttributeName: id
-            AttributeType: N
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+    wallets:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: Wallets
+        AttributeDefinitions:
+          - AttributeName: address
+            AttributeType: S
+        KeySchema:
+          - AttributeName: address
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+    tokens:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: Tokens
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
         KeySchema:
           - AttributeName: id
             KeyType: HASH

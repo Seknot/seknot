@@ -1,4 +1,4 @@
-Resouces:
+Resources:
   Users:
     Type: AWS::DynamoDB::Table
     Properties:

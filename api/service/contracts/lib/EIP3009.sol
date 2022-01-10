@@ -31,15 +31,15 @@ import {EIP712} from "./EIP712.sol";
 abstract contract EIP3009 is IERC20Internal, EIP712Domain {
     // keccak256("TransferWithAuthorization(address from,address to,uint256 value,uint256 validAfter,uint256 validBefore,bytes32 nonce)")
     bytes32 public constant TRANSFER_WITH_AUTHORIZATION_TYPEHASH =
-        keccak256("TransferWithAuthorization(address from,address to,uint256 value,uint256 validAfter,uint256 validBefore,bytes32 nonce)");
+    keccak256("TransferWithAuthorization(address from,address to,uint256 value,uint256 validAfter,uint256 validBefore,bytes32 nonce)");
 
     // keccak256("ReceiveWithAuthorization(address from,address to,uint256 value,uint256 validAfter,uint256 validBefore,bytes32 nonce)")
     bytes32 public constant RECEIVE_WITH_AUTHORIZATION_TYPEHASH =
-        keccak256("ReceiveWithAuthorization(address from,address to,uint256 value,uint256 validAfter,uint256 validBefore,bytes32 nonce)");
+    keccak256("ReceiveWithAuthorization(address from,address to,uint256 value,uint256 validAfter,uint256 validBefore,bytes32 nonce)");
 
     // keccak256("CancelAuthorization(address authorizer,bytes32 nonce)")
     bytes32 public constant CANCEL_AUTHORIZATION_TYPEHASH =
-        keccak256("CancelAuthorization(address authorizer,bytes32 nonce)");
+    keccak256("CancelAuthorization(address authorizer,bytes32 nonce)");
 
     /**
      * @dev authorizer address => nonce => state (true = used / false = unused)
@@ -53,9 +53,9 @@ abstract contract EIP3009 is IERC20Internal, EIP712Domain {
     );
 
     string internal constant _INVALID_SIGNATURE_ERROR =
-        "EIP3009: invalid signature";
+    "EIP3009: invalid signature";
     string internal constant _AUTHORIZATION_USED_ERROR =
-        "EIP3009: authorization is used";
+    "EIP3009: authorization is used";
 
     /**
      * @notice Returns the state of an authorization
@@ -66,9 +66,9 @@ abstract contract EIP3009 is IERC20Internal, EIP712Domain {
      * @return True if the nonce is used
      */
     function authorizationState(address authorizer, bytes32 nonce)
-        external
-        view
-        returns (bool)
+    external
+    view
+    returns (bool)
     {
         return _authorizationStates[authorizer][nonce];
     }

@@ -82,6 +82,94 @@
                 ]
               }
             }
+          },
+          "Users": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+              "TableName": "Users",
+              "AttributeDefinitions": [
+                {
+                  "AttributeName": "id",
+                  "AttributeType": "S"
+                }
+              ],
+              "KeySchema": [
+                {
+                  "AttributeName": "id",
+                  "KeyType": "HASH"
+                }
+              ],
+              "ProvisionedThroughput": {
+                "ReadCapacityUnits": 1,
+                "WriteCapacityUnits": 1
+              }
+            }
+          },
+          "Wallets": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+              "TableName": "Wallets",
+              "AttributeDefinitions": [
+                {
+                  "AttributeName": "id",
+                  "AttributeType": "S"
+                }
+              ],
+              "KeySchema": [
+                {
+                  "AttributeName": "id",
+                  "KeyType": "HASH"
+                }
+              ],
+              "ProvisionedThroughput": {
+                "ReadCapacityUnits": 1,
+                "WriteCapacityUnits": 1
+              }
+            }
+          },
+          "Tokens": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+              "TableName": "Tokens",
+              "AttributeDefinitions": [
+                {
+                  "AttributeName": "id",
+                  "AttributeType": "S"
+                }
+              ],
+              "KeySchema": [
+                {
+                  "AttributeName": "id",
+                  "KeyType": "HASH"
+                }
+              ],
+              "ProvisionedThroughput": {
+                "ReadCapacityUnits": 1,
+                "WriteCapacityUnits": 1
+              }
+            }
+          },
+          "ApiKeys": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+              "TableName": "ApiKeys",
+              "AttributeDefinitions": [
+                {
+                  "AttributeName": "key",
+                  "AttributeType": "S"
+                }
+              ],
+              "KeySchema": [
+                {
+                  "AttributeName": "key",
+                  "KeyType": "HASH"
+                }
+              ],
+              "ProvisionedThroughput": {
+                "ReadCapacityUnits": 1,
+                "WriteCapacityUnits": 1
+              }
+            }
           }
         },
         "Outputs": {
@@ -181,7 +269,96 @@
     "pluginsData": {},
     "functions": {},
     "resources": {
-      "Resources": {},
+      "Resources": {
+        "Users": {
+          "Type": "AWS::DynamoDB::Table",
+          "Properties": {
+            "TableName": "Users",
+            "AttributeDefinitions": [
+              {
+                "AttributeName": "id",
+                "AttributeType": "S"
+              }
+            ],
+            "KeySchema": [
+              {
+                "AttributeName": "id",
+                "KeyType": "HASH"
+              }
+            ],
+            "ProvisionedThroughput": {
+              "ReadCapacityUnits": 1,
+              "WriteCapacityUnits": 1
+            }
+          }
+        },
+        "Wallets": {
+          "Type": "AWS::DynamoDB::Table",
+          "Properties": {
+            "TableName": "Wallets",
+            "AttributeDefinitions": [
+              {
+                "AttributeName": "id",
+                "AttributeType": "S"
+              }
+            ],
+            "KeySchema": [
+              {
+                "AttributeName": "id",
+                "KeyType": "HASH"
+              }
+            ],
+            "ProvisionedThroughput": {
+              "ReadCapacityUnits": 1,
+              "WriteCapacityUnits": 1
+            }
+          }
+        },
+        "Tokens": {
+          "Type": "AWS::DynamoDB::Table",
+          "Properties": {
+            "TableName": "Tokens",
+            "AttributeDefinitions": [
+              {
+                "AttributeName": "id",
+                "AttributeType": "S"
+              }
+            ],
+            "KeySchema": [
+              {
+                "AttributeName": "id",
+                "KeyType": "HASH"
+              }
+            ],
+            "ProvisionedThroughput": {
+              "ReadCapacityUnits": 1,
+              "WriteCapacityUnits": 1
+            }
+          }
+        },
+        "ApiKeys": {
+          "Type": "AWS::DynamoDB::Table",
+          "Properties": {
+            "TableName": "ApiKeys",
+            "AttributeDefinitions": [
+              {
+                "AttributeName": "key",
+                "AttributeType": "S"
+              }
+            ],
+            "KeySchema": [
+              {
+                "AttributeName": "key",
+                "KeyType": "HASH"
+              }
+            ],
+            "ProvisionedThroughput": {
+              "ReadCapacityUnits": 1,
+              "WriteCapacityUnits": 1
+            }
+          }
+        }
+      },
       "Outputs": {}
     },
     "configValidationMode": "warn",
@@ -197,7 +374,7 @@
         "exclude": [
           "templates/**"
         ],
-        "artifactDirectoryName": "serverless/seknotDynamoDb/dev/1640855519154-2021-12-30T09:11:59.154Z"
+        "artifactDirectoryName": "serverless/seknotDynamoDb/dev/1640856174367-2021-12-30T09:22:54.367Z"
       },
       "resources": {
         "$ref": "$[\"service\"][\"resources\"]"
@@ -207,7 +384,7 @@
     "isDashboardMonitoringPreconfigured": false
   },
   "package": {
-    "artifactDirectoryName": "serverless/seknotDynamoDb/dev/1640855519154-2021-12-30T09:11:59.154Z",
+    "artifactDirectoryName": "serverless/seknotDynamoDb/dev/1640856174367-2021-12-30T09:22:54.367Z",
     "artifact": ""
   }
 }

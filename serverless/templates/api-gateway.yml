@@ -3,12 +3,20 @@ Resources:
     Type: "AWS::ApiGateway::RestApi"
     Properties:
       Body: ${file(./templates/swagger.yaml)}
-  GetPersonApiPermission:
+
+  GetSystemStatusPermission:
     Type: "AWS::Lambda::Permission"
     Properties:
-      FunctionName: "slsTestApp-getPerson-${self:provider.stage}"
+      FunctionName: "seknot-getSystemStatus-${self:provider.stage}"
       Action: "lambda:InvokeFunction"
       Principal: "apigateway.amazonaws.com"
+  GetPersonPermission:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      FunctionName: "seknot-getPerson-${self:provider.stage}"
+      Action: "lambda:InvokeFunction"
+      Principal: "apigateway.amazonaws.com"
+
   ApiGatewayDeployment:
     Type: AWS::ApiGateway::Deployment
     Properties:

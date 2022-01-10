@@ -38,25 +38,25 @@ library EIP712 {
      * @return Domain separator
      */
     function makeDomainSeparator(string memory name, string memory version)
-        internal
-        view
-        returns (bytes32)
+    internal
+    view
+    returns (bytes32)
     {
         uint256 chainId;
         assembly {
             chainId := chainid()
         }
         return
-            keccak256(
-                abi.encode(
-                    // keccak256("EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)")
-                    0x8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f,
-                    keccak256(bytes(name)),
-                    keccak256(bytes(version)),
-                    chainId,
-                    address(this)
-                )
-            );
+        keccak256(
+            abi.encode(
+            // keccak256("EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)")
+                0x8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f,
+                keccak256(bytes(name)),
+                keccak256(bytes(version)),
+                chainId,
+                address(this)
+            )
+        );
     }
 
     /**
