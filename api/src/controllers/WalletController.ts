@@ -1,8 +1,10 @@
 import {
+  BadRequestError,
   Body,
   Delete,
   Get,
   JsonController,
+  Param,
   Post,
   QueryParam,
 } from 'routing-controllers';
@@ -10,9 +12,15 @@ import WalletModel, { Wallet, WalletOutput } from '../models/WalletModel';
 
 @JsonController('/wallet')
 export class WalletController {
-  @Get('/all')
+  @Get('/')
   getAllWallets(): Promise<Wallet[]> {
     return WalletModel.getWallets();
+  }
+
+  @Get('/:address')
+  getWallet(@Param('address') address: string): Promise<WalletOutput> {
+    return WalletModel.getWalletByAddressOutput(address);
+    if (!address) throw new BadRequestError('address required');
   }
 
   @Post('/')
@@ -25,17 +33,5 @@ export class WalletController {
     @QueryParam('id', { required: true }) id: string,
   ): Promise<Wallet> {
     return WalletModel.deleteWallet(id);
-  }
-
-  @Get('/')
-  getWallet(
-    @QueryParam('id') id: string,
-    @QueryParam('address') address: string,
-  ): Promise<WalletOutput> {
-    if (id !== undefined) {
-      return WalletModel.getWalletById(id);
-    } else if (address !== undefined)
-      return WalletModel.getWalletByAddress(address);
-    else throw new Error('id or address required');
   }
 }

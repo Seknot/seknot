@@ -1,6 +1,6 @@
 import { Controller, Get } from 'routing-controllers';
 
-@Controller()
+@Controller('/info')
 export class DefaultController {
   @Get('/status')
   getStatus(): string {

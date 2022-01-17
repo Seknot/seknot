@@ -1,0 +1,19 @@
+{
+  "TableName": "Wallets",
+  "AttributeDefinitions": [
+    {
+      "AttributeName": "address",
+      "AttributeType": "S"
+    }
+  ],
+  "KeySchema": [
+    {
+      "AttributeName": "address",
+      "KeyType": "HASH"
+    }
+  ],
+  "ProvisionedThroughput": {
+    "ReadCapacityUnits": 1,
+    "WriteCapacityUnits": 1
+  }
+}
