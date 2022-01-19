@@ -1,0 +1,21 @@
+service: seknotDynamoDb
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: dev
+  region: ap-northeast-1
+
+package:
+  exclude:
+    - templates/**
+
+resources:
+  - ${file(./templates/dynamodb.yml)}
+
+custom:
+  dynamodb:
+    stages:
+      - dev
+    start:
+      inMemory: true
+      migrate: true

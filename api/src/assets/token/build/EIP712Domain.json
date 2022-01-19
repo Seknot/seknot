@@ -1,0 +1,206 @@
+{
+  "contractName": "EIP712Domain",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "DOMAIN_SEPARATOR",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.0+commit.c7dfd78e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"DOMAIN_SEPARATOR\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"stateVariables\":{\"DOMAIN_SEPARATOR\":{\"details\":\"EIP712 Domain Separator\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/lib/EIP712Domain.sol\":\"EIP712Domain\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/lib/EIP712Domain.sol\":{\"keccak256\":\"0x81e2593665f43cc4da2945da1f7aa72fda1fcae3ab236f4b46793765656182d5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://9f31fc8847d034369148ec8652d7e8c06712d9035f9402d721003f7a3d129664\",\"dweb:/ipfs/QmYbP6j4RRZVDApNAyMNma4fKPy2ezjXGUDVKTWGoR4Tfq\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\n\npragma solidity >=0.4.22 <0.9.0;\n\nabstract contract EIP712Domain {\n    /**\n     * @dev EIP712 Domain Separator\n     */\n    bytes32 public DOMAIN_SEPARATOR;\n}\n",
+  "sourcePath": "/Users/koichi/dev/hackCoin/token/contracts/lib/EIP712Domain.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/lib/EIP712Domain.sol",
+    "exportedSymbols": {
+      "EIP712Domain": [
+        1757
+      ]
+    },
+    "id": 1758,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1753,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:32:10"
+      },
+      {
+        "abstract": true,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 1757,
+        "linearizedBaseContracts": [
+          1757
+        ],
+        "name": "EIP712Domain",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "documentation": {
+              "id": 1754,
+              "nodeType": "StructuredDocumentation",
+              "src": "104:47:10",
+              "text": " @dev EIP712 Domain Separator"
+            },
+            "functionSelector": "3644e515",
+            "id": 1756,
+            "mutability": "mutable",
+            "name": "DOMAIN_SEPARATOR",
+            "nodeType": "VariableDeclaration",
+            "scope": 1757,
+            "src": "156:31:10",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes32",
+              "typeString": "bytes32"
+            },
+            "typeName": {
+              "id": 1755,
+              "name": "bytes32",
+              "nodeType": "ElementaryTypeName",
+              "src": "156:7:10",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "visibility": "public"
+          }
+        ],
+        "scope": 1758,
+        "src": "67:123:10"
+      }
+    ],
+    "src": "33:158:10"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/lib/EIP712Domain.sol",
+    "exportedSymbols": {
+      "EIP712Domain": [
+        1757
+      ]
+    },
+    "id": 1758,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1753,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:32:10"
+      },
+      {
+        "abstract": true,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 1757,
+        "linearizedBaseContracts": [
+          1757
+        ],
+        "name": "EIP712Domain",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "documentation": {
+              "id": 1754,
+              "nodeType": "StructuredDocumentation",
+              "src": "104:47:10",
+              "text": " @dev EIP712 Domain Separator"
+            },
+            "functionSelector": "3644e515",
+            "id": 1756,
+            "mutability": "mutable",
+            "name": "DOMAIN_SEPARATOR",
+            "nodeType": "VariableDeclaration",
+            "scope": 1757,
+            "src": "156:31:10",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes32",
+              "typeString": "bytes32"
+            },
+            "typeName": {
+              "id": 1755,
+              "name": "bytes32",
+              "nodeType": "ElementaryTypeName",
+              "src": "156:7:10",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "visibility": "public"
+          }
+        ],
+        "scope": 1758,
+        "src": "67:123:10"
+      }
+    ],
+    "src": "33:158:10"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.0+commit.c7dfd78e.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2022-01-19T06:02:13.518Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "stateVariables": {
+      "DOMAIN_SEPARATOR": {
+        "details": "EIP712 Domain Separator"
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

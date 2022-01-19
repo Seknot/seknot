@@ -24,7 +24,6 @@ export interface Wallet {
 }
 
 export interface WalletOutput {
-  id: string;
   address: string;
   service: string;
   created_at: string;
@@ -110,7 +109,6 @@ export default class WalletModel {
       throw new Error('Wallet not found');
     }
     const outputItem: WalletOutput = {
-      id: output.Item.id,
       address: output.Item.address,
       service: output.Item.service,
       created_at: output.Item.created_at,

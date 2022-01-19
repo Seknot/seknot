@@ -8,9 +8,10 @@ export default async function createToken(
   token: Token,
   serviceWallet: Wallet,
 ): Promise<Token> {
-  const NODE_URL =
-    'https://polygon-mumbai.infura.io/v3/ac7dd9c52b7c46cbbaa07783eb437574';
-  const provider = new ethers.providers.JsonRpcProvider(NODE_URL);
+  const provider = new ethers.providers.InfuraProvider('ropsten', {
+    projectId: process.env.INFURA_PROJECT_ID,
+    projectSecret: process.env.INFURA_PROJECT_SECRET,
+  });
   const privateKey = serviceWallet.privateKey;
   const wallet = new ethers.Wallet(privateKey, provider);
   const contract = new ethers.ContractFactory(

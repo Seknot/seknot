@@ -26,6 +26,7 @@ export interface Token {
   version: number;
   decimals: number;
   created_at: string;
+  serviceWallet?: string;
 }
 
 export default class TokenMode {

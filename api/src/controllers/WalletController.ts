@@ -1,31 +1,52 @@
 import {
   BadRequestError,
   Body,
+  BodyParam,
   Delete,
   Get,
   JsonController,
   Param,
   Post,
   QueryParam,
+  UseBefore,
 } from 'routing-controllers';
 import WalletModel, { Wallet, WalletOutput } from '../models/WalletModel';
+import { json } from 'body-parser';
 
 @JsonController('/wallet')
 export class WalletController {
   @Get('/')
-  getAllWallets(): Promise<Wallet[]> {
-    return WalletModel.getWallets();
+  async getAllWallets(): Promise<WalletOutput[]> {
+    const wallets: Wallet[] = await WalletModel.getWallets();
+    const output: WalletOutput[] = wallets.map((wallet) => {
+      return {
+        address: wallet.address,
+        service: wallet.service,
+        created_at: wallet.created_at,
+      } as WalletOutput;
+    });
+
+    return output;
   }
 
   @Get('/:address')
   getWallet(@Param('address') address: string): Promise<WalletOutput> {
     return WalletModel.getWalletByAddressOutput(address);
-    if (!address) throw new BadRequestError('address required');
   }
 
   @Post('/')
-  createNewWallet(@Body() shopId: string): Promise<Wallet> {
-    return WalletModel.createWallet(shopId);
+  @UseBefore(json())
+  async createNewWallet(
+    @BodyParam('serviceId', { required: true }) serviceId: string,
+  ): Promise<WalletOutput> {
+    const newWallet = await WalletModel.createWallet(serviceId);
+    const outputItem: WalletOutput = {
+      address: newWallet.address,
+      service: newWallet.service,
+      created_at: newWallet.created_at,
+    };
+
+    return outputItem;
   }
 
   @Delete('/')

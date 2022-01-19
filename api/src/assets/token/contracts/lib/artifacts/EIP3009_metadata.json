@@ -1,0 +1,396 @@
+{
+  "compiler": {
+    "version": "0.8.7+commit.e28d00a7"
+  },
+  "language": "Solidity",
+  "output": {
+    "abi": [
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "authorizer",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "nonce",
+            "type": "bytes32"
+          }
+        ],
+        "name": "AuthorizationCanceled",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "authorizer",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "nonce",
+            "type": "bytes32"
+          }
+        ],
+        "name": "AuthorizationUsed",
+        "type": "event"
+      },
+      {
+        "inputs": [],
+        "name": "CANCEL_AUTHORIZATION_TYPEHASH",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "DOMAIN_SEPARATOR",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "RECEIVE_WITH_AUTHORIZATION_TYPEHASH",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "TRANSFER_WITH_AUTHORIZATION_TYPEHASH",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "authorizer",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "nonce",
+            "type": "bytes32"
+          }
+        ],
+        "name": "authorizationState",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "authorizer",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "nonce",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint8",
+            "name": "v",
+            "type": "uint8"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "r",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "s",
+            "type": "bytes32"
+          }
+        ],
+        "name": "cancelAuthorization",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "validAfter",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "validBefore",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "nonce",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint8",
+            "name": "v",
+            "type": "uint8"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "r",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "s",
+            "type": "bytes32"
+          }
+        ],
+        "name": "receiveWithAuthorization",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "validAfter",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "validBefore",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "nonce",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint8",
+            "name": "v",
+            "type": "uint8"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "r",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "s",
+            "type": "bytes32"
+          }
+        ],
+        "name": "transferWithAuthorization",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      }
+    ],
+    "devdoc": {
+      "kind": "dev",
+      "methods": {
+        "authorizationState(address,bytes32)": {
+          "details": "Nonces are randomly generated 32-byte data unique to the authorizer's address",
+          "params": {
+            "authorizer": "Authorizer's address",
+            "nonce": "Nonce of the authorization"
+          },
+          "returns": {
+            "_0": "True if the nonce is used"
+          }
+        },
+        "cancelAuthorization(address,bytes32,uint8,bytes32,bytes32)": {
+          "params": {
+            "authorizer": "Authorizer's address",
+            "nonce": "Nonce of the authorization",
+            "r": "r of the signature",
+            "s": "s of the signature",
+            "v": "v of the signature"
+          }
+        },
+        "receiveWithAuthorization(address,address,uint256,uint256,uint256,bytes32,uint8,bytes32,bytes32)": {
+          "details": "This has an additional check to ensure that the payee's address matches the caller of this function to prevent front-running attacks. (See security considerations)",
+          "params": {
+            "from": "Payer's address (Authorizer)",
+            "nonce": "Unique nonce",
+            "r": "r of the signature",
+            "s": "s of the signature",
+            "to": "Payee's address",
+            "v": "v of the signature",
+            "validAfter": "The time after which this is valid (unix time)",
+            "validBefore": "The time before which this is valid (unix time)",
+            "value": "Amount to be transferred"
+          }
+        },
+        "transferWithAuthorization(address,address,uint256,uint256,uint256,bytes32,uint8,bytes32,bytes32)": {
+          "params": {
+            "from": "Payer's address (Authorizer)",
+            "nonce": "Unique nonce",
+            "r": "r of the signature",
+            "s": "s of the signature",
+            "to": "Payee's address",
+            "v": "v of the signature",
+            "validAfter": "The time after which this is valid (unix time)",
+            "validBefore": "The time before which this is valid (unix time)",
+            "value": "Amount to be transferred"
+          }
+        }
+      },
+      "stateVariables": {
+        "_authorizationStates": {
+          "details": "authorizer address => nonce => state (true = used / false = unused)"
+        }
+      },
+      "version": 1
+    },
+    "userdoc": {
+      "kind": "user",
+      "methods": {
+        "authorizationState(address,bytes32)": {
+          "notice": "Returns the state of an authorization"
+        },
+        "cancelAuthorization(address,bytes32,uint8,bytes32,bytes32)": {
+          "notice": "Attempt to cancel an authorization"
+        },
+        "receiveWithAuthorization(address,address,uint256,uint256,uint256,bytes32,uint8,bytes32,bytes32)": {
+          "notice": "Receive a transfer with a signed authorization from the payer"
+        },
+        "transferWithAuthorization(address,address,uint256,uint256,uint256,bytes32,uint8,bytes32,bytes32)": {
+          "notice": "Execute a transfer with a signed authorization"
+        }
+      },
+      "version": 1
+    }
+  },
+  "settings": {
+    "compilationTarget": {
+      "contracts/lib/EIP3009.sol": "EIP3009"
+    },
+    "evmVersion": "london",
+    "libraries": {},
+    "metadata": {
+      "bytecodeHash": "ipfs"
+    },
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "remappings": []
+  },
+  "sources": {
+    "contracts/lib/ECRecover.sol": {
+      "keccak256": "0x7ca190bde28972b9464be1d282243c1548c4d6fac8012d5a52683262bd6208b5",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://89e19b5d06980a4f05b58c32d6db0ff396bdbf47a6f6a72af19ea6c1879b76f2",
+        "dweb:/ipfs/QmeCWHH4og3BewFAD5rwEPdGPDxbpx5ZazjBybCEEyoUrV"
+      ]
+    },
+    "contracts/lib/EIP3009.sol": {
+      "keccak256": "0x44c2413972573f80248e48954a07c670896abaefa4d475250061a76d3ac13406",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://68b1a0c14866306a1e8eccaf5d57ee85f846c34fc95c27b02b44cc7121f39a3f",
+        "dweb:/ipfs/QmSYsUpgWCn1XpX9i4m2vVrcF44M2LgvteTShNhoHfQkqE"
+      ]
+    },
+    "contracts/lib/EIP712.sol": {
+      "keccak256": "0x676b81d5a8ad375ede0fe42f697e279c011412ec8ad43e9dae74e53cf6fae0c4",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://41d010cc8ccd5924f3ab5b584a51a2b92a38545dc2740acab19d20bb3c005862",
+        "dweb:/ipfs/QmcmHZ7Muu8CStnBKcjDttEHnMnar5qQhJMg3KDkUbRnpM"
+      ]
+    },
+    "contracts/lib/EIP712Domain.sol": {
+      "keccak256": "0x81e2593665f43cc4da2945da1f7aa72fda1fcae3ab236f4b46793765656182d5",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://9f31fc8847d034369148ec8652d7e8c06712d9035f9402d721003f7a3d129664",
+        "dweb:/ipfs/QmYbP6j4RRZVDApNAyMNma4fKPy2ezjXGUDVKTWGoR4Tfq"
+      ]
+    },
+    "contracts/lib/IERC20Internal.sol": {
+      "keccak256": "0x16a2bbd895e23ac54cad8421b0a803cd91aee4e44d420e8e272db152f9ceca70",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://f73be28fb3db37c183ac884b16453873415bba7dd18110af470ce2b1eff5d025",
+        "dweb:/ipfs/QmdQ8WQQ29UqWzc3BFuR1bu1gYktgLZrR4XZjWe9a1CbpX"
+      ]
+    }
+  },
+  "version": 1
+}

@@ -14,6 +14,7 @@ import {
   DeleteItemCommand,
   DeleteItemCommandOutput,
 } from '@aws-sdk/client-dynamodb';
+import { NotFoundError } from 'routing-controllers';
 
 export interface Service {
   id: string;
@@ -50,6 +51,23 @@ export class ServiceModel {
     const output: GetCommandOutput = await documentClient.send(cmd);
 
     return output.Item as Service;
+  }
+
+  static async getServiceByAddress(serviceWallet: string): Promise<any> {
+    const cmd = new ScanCommand({
+      TableName: 'Services',
+      FilterExpression: 'serviceWallet = :serviceWallet',
+      ExpressionAttributeValues: {
+        ':serviceWallet': serviceWallet,
+      },
+    } as ScanCommandInput);
+    const output: ScanCommandOutput = await documentClient.send(cmd);
+
+    if (output.Items == undefined || output.Items[0] == undefined) {
+      throw new NotFoundError('error service not found');
+    } else {
+      return output.Items[0] as Service;
+    }
   }
 
   static async createService(input: ServiceInput): Promise<Service> {

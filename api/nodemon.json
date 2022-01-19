@@ -1,0 +1,14 @@
+{
+  "restartable": "rs",
+  "env": {
+    "NODE_ENV": "dev"
+  },
+  "watch": [
+    "src"
+  ],
+  "ext": "js, ts, json",
+  "ignore": [
+    "tests/**/*.ts"
+  ],
+  "exec": "ts-node -r dotenv/config ./src/index.ts dotenv_config_path=.env/.env.dev"
+}

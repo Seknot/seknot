@@ -1,0 +1,48 @@
+org: kou3141
+app: seknot-api
+service: seknot-api
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: ap-northeast-1
+  stage: ${opt:stage, 'dev'}
+  profile: default
+  environment:
+    NODE_ENV: ${self:provider.stage}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        - 'arn:aws:dynamodb:${self:provider.region}:*:table/Users'
+        - 'arn:aws:dynamodb:${self:provider.region}:*:table/Wallets'
+        - 'arn:aws:dynamodb:${self:provider.region}:*:table/Tokens'
+
+functions:
+  app:
+    handler: src/handler.handler
+    timeout: 30
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
+
+package:
+  exclude: # デプロイパッケージから除外
+    - '**'
+  include: #  デプロイパッケージに含める
+    - dist/**
+
+plugins:
+  - serverless-offline
+  - serverless-webpack
+
+custom:
+  webpack:
+    webpackConfig: 'webpack.serverless.config.js'
+    includeModules: true
