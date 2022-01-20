@@ -82,6 +82,7 @@ export class TokenController {
       token.address,
     );
     const tokenController = await TokenService.init(wallet, token, service);
+
     return await tokenController.sendToken(
       await WalletModel.getWalletByAddress(tokenAddress),
       value,

@@ -71,15 +71,15 @@ export class TokenService {
     to: ethers.Wallet,
     balance: number,
   ): Promise<string> {
-    const domain = EIP712Domain({
+    const domain = {
       name: this.token.name,
       version: this.token.version.toString(),
       chainId: await this.wallet.getChainId(),
       verifyingContract: this.token.address,
-    });
-    const TransferWithAuthorization = domain.createType(
-      'TransferWithAuthorization',
-      [
+    };
+
+    const types = {
+      TransferWithAuthorization: [
         { name: 'from', type: 'address' },
         { name: 'to', type: 'address' },
         { name: 'value', type: 'uint256' },
@@ -87,25 +87,23 @@ export class TokenService {
         { name: 'validBefore', type: 'uint256' },
         { name: 'nonce', type: 'bytes32' },
       ],
-    );
+    };
 
-    const message = new TransferWithAuthorization({
+    const message = {
       from: from.address,
       to: to.address,
       value: balance.toString(10),
       validAfter: 0,
       validBefore: Math.floor(Date.now() / 1000) + 3600, // Valid for an hour
       nonce: Web3.utils.randomHex(32),
-    });
+    };
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    const signer = new SimpleSigner(from.privateKey);
-    const signedData = await message.sign(signer);
+    let signedData = await from._signTypedData(domain, types, message);
 
-    const r = '0x' + signedData.r;
-    const s = '0x' + signedData.s;
-    const v = signedData.recoveryParam + 26;
+    signedData = signedData.substring(2);
+    const r = '0x' + signedData.substring(0, 64);
+    const s = '0x' + signedData.substring(64, 128);
+    const v = parseInt(signedData.substring(128, 130), 16);
 
     const tokenInterface = new ethers.utils.Interface(ABI);
 
