@@ -107,13 +107,13 @@
         1375
       ],
       "EIP712": [
-        1751
+        1765
       ],
       "EIP712Domain": [
-        1757
+        1771
       ],
       "IERC20Internal": [
-        1810
+        1824
       ]
     },
     "id": 1376,
@@ -140,7 +140,7 @@
         "id": 1284,
         "nodeType": "ImportDirective",
         "scope": 1376,
-        "sourceUnit": 1811,
+        "sourceUnit": 1825,
         "src": "1183:52:7",
         "symbolAliases": [
           {
@@ -162,7 +162,7 @@
         "id": 1286,
         "nodeType": "ImportDirective",
         "scope": 1376,
-        "sourceUnit": 1758,
+        "sourceUnit": 1772,
         "src": "1236:48:7",
         "symbolAliases": [
           {
@@ -184,7 +184,7 @@
         "id": 1288,
         "nodeType": "ImportDirective",
         "scope": 1376,
-        "sourceUnit": 1752,
+        "sourceUnit": 1766,
         "src": "1285:36:7",
         "symbolAliases": [
           {
@@ -208,7 +208,7 @@
               "id": 1289,
               "name": "IERC20Internal",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 1810,
+              "referencedDeclaration": 1824,
               "src": "1352:14:7"
             },
             "id": 1290,
@@ -220,7 +220,7 @@
               "id": 1291,
               "name": "EIP712Domain",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 1757,
+              "referencedDeclaration": 1771,
               "src": "1368:12:7"
             },
             "id": 1292,
@@ -229,16 +229,16 @@
           }
         ],
         "contractDependencies": [
-          1757,
-          1810
+          1771,
+          1824
         ],
         "contractKind": "contract",
         "fullyImplemented": false,
         "id": 1375,
         "linearizedBaseContracts": [
           1375,
-          1757,
-          1810
+          1771,
+          1824
         ],
         "name": "EIP2612",
         "nodeType": "ContractDefinition",
@@ -832,7 +832,7 @@
                               "name": "DOMAIN_SEPARATOR",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1756,
+                              "referencedDeclaration": 1770,
                               "src": "2794:16:7",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_bytes32",
@@ -916,10 +916,10 @@
                               "name": "EIP712",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1751,
+                              "referencedDeclaration": 1765,
                               "src": "2779:6:7",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_type$_t_contract$_EIP712_$1751_$",
+                                "typeIdentifier": "t_type$_t_contract$_EIP712_$1765_$",
                                 "typeString": "type(library EIP712)"
                               }
                             },
@@ -930,7 +930,7 @@
                             "lValueRequested": false,
                             "memberName": "recover",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 1750,
+                            "referencedDeclaration": 1764,
                             "src": "2779:14:7",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_internal_pure$_t_bytes32_$_t_uint8_$_t_bytes32_$_t_bytes32_$_t_bytes_memory_ptr_$returns$_t_address_$",
@@ -1092,7 +1092,7 @@
                       "name": "_approve",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1777,
+                      "referencedDeclaration": 1791,
                       "src": "2898:8:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$__$",
@@ -1350,13 +1350,13 @@
         1375
       ],
       "EIP712": [
-        1751
+        1765
       ],
       "EIP712Domain": [
-        1757
+        1771
       ],
       "IERC20Internal": [
-        1810
+        1824
       ]
     },
     "id": 1376,
@@ -1383,7 +1383,7 @@
         "id": 1284,
         "nodeType": "ImportDirective",
         "scope": 1376,
-        "sourceUnit": 1811,
+        "sourceUnit": 1825,
         "src": "1183:52:7",
         "symbolAliases": [
           {
@@ -1405,7 +1405,7 @@
         "id": 1286,
         "nodeType": "ImportDirective",
         "scope": 1376,
-        "sourceUnit": 1758,
+        "sourceUnit": 1772,
         "src": "1236:48:7",
         "symbolAliases": [
           {
@@ -1427,7 +1427,7 @@
         "id": 1288,
         "nodeType": "ImportDirective",
         "scope": 1376,
-        "sourceUnit": 1752,
+        "sourceUnit": 1766,
         "src": "1285:36:7",
         "symbolAliases": [
           {
@@ -1451,7 +1451,7 @@
               "id": 1289,
               "name": "IERC20Internal",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 1810,
+              "referencedDeclaration": 1824,
               "src": "1352:14:7"
             },
             "id": 1290,
@@ -1463,7 +1463,7 @@
               "id": 1291,
               "name": "EIP712Domain",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 1757,
+              "referencedDeclaration": 1771,
               "src": "1368:12:7"
             },
             "id": 1292,
@@ -1472,16 +1472,16 @@
           }
         ],
         "contractDependencies": [
-          1757,
-          1810
+          1771,
+          1824
         ],
         "contractKind": "contract",
         "fullyImplemented": false,
         "id": 1375,
         "linearizedBaseContracts": [
           1375,
-          1757,
-          1810
+          1771,
+          1824
         ],
         "name": "EIP2612",
         "nodeType": "ContractDefinition",
@@ -2075,7 +2075,7 @@
                               "name": "DOMAIN_SEPARATOR",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1756,
+                              "referencedDeclaration": 1770,
                               "src": "2794:16:7",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_bytes32",
@@ -2159,10 +2159,10 @@
                               "name": "EIP712",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1751,
+                              "referencedDeclaration": 1765,
                               "src": "2779:6:7",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_type$_t_contract$_EIP712_$1751_$",
+                                "typeIdentifier": "t_type$_t_contract$_EIP712_$1765_$",
                                 "typeString": "type(library EIP712)"
                               }
                             },
@@ -2173,7 +2173,7 @@
                             "lValueRequested": false,
                             "memberName": "recover",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 1750,
+                            "referencedDeclaration": 1764,
                             "src": "2779:14:7",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_internal_pure$_t_bytes32_$_t_uint8_$_t_bytes32_$_t_bytes32_$_t_bytes_memory_ptr_$returns$_t_address_$",
@@ -2335,7 +2335,7 @@
                       "name": "_approve",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1777,
+                      "referencedDeclaration": 1791,
                       "src": "2898:8:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$__$",
@@ -2592,7 +2592,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2022-01-19T06:02:13.514Z",
+  "updatedAt": "2022-01-20T16:56:29.965Z",
   "devdoc": {
     "kind": "dev",
     "methods": {

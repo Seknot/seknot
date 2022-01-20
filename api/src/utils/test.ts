@@ -8,7 +8,7 @@ import { Service, ServiceModel } from '../models/ServiceModel';
     '0xD034E7A0470238DEb98D40D9C353B72676d0858a',
   );
   const token: Token = await TokenModel.getToken(
-    '0xCa23517A8A66a2ff572C13C60A9B11134570E412',
+    '0xfde77337D08e2b04Dab7B161B650E16065e30779',
   );
 
   const service: Service = await ServiceModel.getService(

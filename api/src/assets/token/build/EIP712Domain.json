@@ -29,15 +29,15 @@
     "absolutePath": "project:/contracts/lib/EIP712Domain.sol",
     "exportedSymbols": {
       "EIP712Domain": [
-        1757
+        1771
       ]
     },
-    "id": 1758,
+    "id": 1772,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1753,
+        "id": 1767,
         "literals": [
           "solidity",
           ">=",
@@ -56,9 +56,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 1757,
+        "id": 1771,
         "linearizedBaseContracts": [
-          1757
+          1771
         ],
         "name": "EIP712Domain",
         "nodeType": "ContractDefinition",
@@ -66,17 +66,17 @@
           {
             "constant": false,
             "documentation": {
-              "id": 1754,
+              "id": 1768,
               "nodeType": "StructuredDocumentation",
               "src": "104:47:10",
               "text": " @dev EIP712 Domain Separator"
             },
             "functionSelector": "3644e515",
-            "id": 1756,
+            "id": 1770,
             "mutability": "mutable",
             "name": "DOMAIN_SEPARATOR",
             "nodeType": "VariableDeclaration",
-            "scope": 1757,
+            "scope": 1771,
             "src": "156:31:10",
             "stateVariable": true,
             "storageLocation": "default",
@@ -85,7 +85,7 @@
               "typeString": "bytes32"
             },
             "typeName": {
-              "id": 1755,
+              "id": 1769,
               "name": "bytes32",
               "nodeType": "ElementaryTypeName",
               "src": "156:7:10",
@@ -97,7 +97,7 @@
             "visibility": "public"
           }
         ],
-        "scope": 1758,
+        "scope": 1772,
         "src": "67:123:10"
       }
     ],
@@ -107,15 +107,15 @@
     "absolutePath": "project:/contracts/lib/EIP712Domain.sol",
     "exportedSymbols": {
       "EIP712Domain": [
-        1757
+        1771
       ]
     },
-    "id": 1758,
+    "id": 1772,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1753,
+        "id": 1767,
         "literals": [
           "solidity",
           ">=",
@@ -134,9 +134,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 1757,
+        "id": 1771,
         "linearizedBaseContracts": [
-          1757
+          1771
         ],
         "name": "EIP712Domain",
         "nodeType": "ContractDefinition",
@@ -144,17 +144,17 @@
           {
             "constant": false,
             "documentation": {
-              "id": 1754,
+              "id": 1768,
               "nodeType": "StructuredDocumentation",
               "src": "104:47:10",
               "text": " @dev EIP712 Domain Separator"
             },
             "functionSelector": "3644e515",
-            "id": 1756,
+            "id": 1770,
             "mutability": "mutable",
             "name": "DOMAIN_SEPARATOR",
             "nodeType": "VariableDeclaration",
-            "scope": 1757,
+            "scope": 1771,
             "src": "156:31:10",
             "stateVariable": true,
             "storageLocation": "default",
@@ -163,7 +163,7 @@
               "typeString": "bytes32"
             },
             "typeName": {
-              "id": 1755,
+              "id": 1769,
               "name": "bytes32",
               "nodeType": "ElementaryTypeName",
               "src": "156:7:10",
@@ -175,7 +175,7 @@
             "visibility": "public"
           }
         ],
-        "scope": 1758,
+        "scope": 1772,
         "src": "67:123:10"
       }
     ],
@@ -187,7 +187,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2022-01-19T06:02:13.518Z",
+  "updatedAt": "2022-01-20T16:56:29.969Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

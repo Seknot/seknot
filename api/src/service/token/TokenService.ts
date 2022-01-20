@@ -72,8 +72,8 @@ export class TokenService {
     balance: number,
   ): Promise<string> {
     const domain = {
-      name: this.token.name,
-      version: this.token.version.toString(),
+      name: await this.contract.name(),
+      version: await this.contract.version(),
       chainId: await this.wallet.getChainId(),
       verifyingContract: this.token.address,
     };
@@ -98,12 +98,20 @@ export class TokenService {
       nonce: Web3.utils.randomHex(32),
     };
 
+    console.log(message);
+    console.log(domain);
+
     let signedData = await from._signTypedData(domain, types, message);
+    console.log(
+      ethers.utils.verifyTypedData(domain, types, message, signedData),
+    );
 
     signedData = signedData.substring(2);
     const r = '0x' + signedData.substring(0, 64);
     const s = '0x' + signedData.substring(64, 128);
     const v = parseInt(signedData.substring(128, 130), 16);
+
+    console.log('v:', v, 'r:', r, 's:', s);
 
     const tokenInterface = new ethers.utils.Interface(ABI);
 

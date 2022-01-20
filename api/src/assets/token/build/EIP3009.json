@@ -255,7 +255,7 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.0+commit.c7dfd78e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"authorizer\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"nonce\",\"type\":\"bytes32\"}],\"name\":\"AuthorizationCanceled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"authorizer\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"nonce\",\"type\":\"bytes32\"}],\"name\":\"AuthorizationUsed\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"CANCEL_AUTHORIZATION_TYPEHASH\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"DOMAIN_SEPARATOR\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"RECEIVE_WITH_AUTHORIZATION_TYPEHASH\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"TRANSFER_WITH_AUTHORIZATION_TYPEHASH\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"authorizer\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"nonce\",\"type\":\"bytes32\"}],\"name\":\"authorizationState\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"authorizer\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"nonce\",\"type\":\"bytes32\"},{\"internalType\":\"uint8\",\"name\":\"v\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"r\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"s\",\"type\":\"bytes32\"}],\"name\":\"cancelAuthorization\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"validAfter\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"validBefore\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"nonce\",\"type\":\"bytes32\"},{\"internalType\":\"uint8\",\"name\":\"v\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"r\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"s\",\"type\":\"bytes32\"}],\"name\":\"receiveWithAuthorization\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"validAfter\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"validBefore\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"nonce\",\"type\":\"bytes32\"},{\"internalType\":\"uint8\",\"name\":\"v\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"r\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"s\",\"type\":\"bytes32\"}],\"name\":\"transferWithAuthorization\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"authorizationState(address,bytes32)\":{\"details\":\"Nonces are randomly generated 32-byte data unique to the authorizer's address\",\"params\":{\"authorizer\":\"Authorizer's address\",\"nonce\":\"Nonce of the authorization\"},\"returns\":{\"_0\":\"True if the nonce is used\"}},\"cancelAuthorization(address,bytes32,uint8,bytes32,bytes32)\":{\"params\":{\"authorizer\":\"Authorizer's address\",\"nonce\":\"Nonce of the authorization\",\"r\":\"r of the signature\",\"s\":\"s of the signature\",\"v\":\"v of the signature\"}},\"receiveWithAuthorization(address,address,uint256,uint256,uint256,bytes32,uint8,bytes32,bytes32)\":{\"details\":\"This has an additional check to ensure that the payee's address matches the caller of this function to prevent front-running attacks. (See security considerations)\",\"params\":{\"from\":\"Payer's address (Authorizer)\",\"nonce\":\"Unique nonce\",\"r\":\"r of the signature\",\"s\":\"s of the signature\",\"to\":\"Payee's address\",\"v\":\"v of the signature\",\"validAfter\":\"The time after which this is valid (unix time)\",\"validBefore\":\"The time before which this is valid (unix time)\",\"value\":\"Amount to be transferred\"}},\"transferWithAuthorization(address,address,uint256,uint256,uint256,bytes32,uint8,bytes32,bytes32)\":{\"params\":{\"from\":\"Payer's address (Authorizer)\",\"nonce\":\"Unique nonce\",\"r\":\"r of the signature\",\"s\":\"s of the signature\",\"to\":\"Payee's address\",\"v\":\"v of the signature\",\"validAfter\":\"The time after which this is valid (unix time)\",\"validBefore\":\"The time before which this is valid (unix time)\",\"value\":\"Amount to be transferred\"}}},\"stateVariables\":{\"_authorizationStates\":{\"details\":\"authorizer address => nonce => state (true = used / false = unused)\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"authorizationState(address,bytes32)\":{\"notice\":\"Returns the state of an authorization\"},\"cancelAuthorization(address,bytes32,uint8,bytes32,bytes32)\":{\"notice\":\"Attempt to cancel an authorization\"},\"receiveWithAuthorization(address,address,uint256,uint256,uint256,bytes32,uint8,bytes32,bytes32)\":{\"notice\":\"Receive a transfer with a signed authorization from the payer\"},\"transferWithAuthorization(address,address,uint256,uint256,uint256,bytes32,uint8,bytes32,bytes32)\":{\"notice\":\"Execute a transfer with a signed authorization\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/lib/EIP3009.sol\":\"EIP3009\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/lib/ECRecover.sol\":{\"keccak256\":\"0x7ca190bde28972b9464be1d282243c1548c4d6fac8012d5a52683262bd6208b5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://89e19b5d06980a4f05b58c32d6db0ff396bdbf47a6f6a72af19ea6c1879b76f2\",\"dweb:/ipfs/QmeCWHH4og3BewFAD5rwEPdGPDxbpx5ZazjBybCEEyoUrV\"]},\"project:/contracts/lib/EIP3009.sol\":{\"keccak256\":\"0x2c120fa2d971f927eb99f4731316ef179a038e9477ed6a27fb6006d867cceebd\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://1e28afbb44aaf6219ba15d6a481417185961927de7222f5c18543a3da1d6bd1d\",\"dweb:/ipfs/QmXS3fFrVqPmTiWKoSFwbajLr79YnoQxNqkvcWLEAFCygG\"]},\"project:/contracts/lib/EIP712.sol\":{\"keccak256\":\"0xd8452b3c6d4b67d2f2a5ae0bddda5652b4e52cfe429675b98435f728cf3fe87f\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://30b4a4eb9715dd019f5902b87759b17e6a9d50b5fc6e6584bff8c4ceef530e73\",\"dweb:/ipfs/QmdNhTmbNKNZfGZ4EdzE4YVEmQtrGrNBVDkd82docEkny9\"]},\"project:/contracts/lib/EIP712Domain.sol\":{\"keccak256\":\"0x81e2593665f43cc4da2945da1f7aa72fda1fcae3ab236f4b46793765656182d5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://9f31fc8847d034369148ec8652d7e8c06712d9035f9402d721003f7a3d129664\",\"dweb:/ipfs/QmYbP6j4RRZVDApNAyMNma4fKPy2ezjXGUDVKTWGoR4Tfq\"]},\"project:/contracts/lib/IERC20Internal.sol\":{\"keccak256\":\"0x16a2bbd895e23ac54cad8421b0a803cd91aee4e44d420e8e272db152f9ceca70\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f73be28fb3db37c183ac884b16453873415bba7dd18110af470ce2b1eff5d025\",\"dweb:/ipfs/QmdQ8WQQ29UqWzc3BFuR1bu1gYktgLZrR4XZjWe9a1CbpX\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.0+commit.c7dfd78e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"authorizer\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"nonce\",\"type\":\"bytes32\"}],\"name\":\"AuthorizationCanceled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"authorizer\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"nonce\",\"type\":\"bytes32\"}],\"name\":\"AuthorizationUsed\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"CANCEL_AUTHORIZATION_TYPEHASH\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"DOMAIN_SEPARATOR\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"RECEIVE_WITH_AUTHORIZATION_TYPEHASH\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"TRANSFER_WITH_AUTHORIZATION_TYPEHASH\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"authorizer\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"nonce\",\"type\":\"bytes32\"}],\"name\":\"authorizationState\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"authorizer\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"nonce\",\"type\":\"bytes32\"},{\"internalType\":\"uint8\",\"name\":\"v\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"r\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"s\",\"type\":\"bytes32\"}],\"name\":\"cancelAuthorization\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"validAfter\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"validBefore\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"nonce\",\"type\":\"bytes32\"},{\"internalType\":\"uint8\",\"name\":\"v\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"r\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"s\",\"type\":\"bytes32\"}],\"name\":\"receiveWithAuthorization\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"validAfter\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"validBefore\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"nonce\",\"type\":\"bytes32\"},{\"internalType\":\"uint8\",\"name\":\"v\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"r\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"s\",\"type\":\"bytes32\"}],\"name\":\"transferWithAuthorization\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"authorizationState(address,bytes32)\":{\"details\":\"Nonces are randomly generated 32-byte data unique to the authorizer's address\",\"params\":{\"authorizer\":\"Authorizer's address\",\"nonce\":\"Nonce of the authorization\"},\"returns\":{\"_0\":\"True if the nonce is used\"}},\"cancelAuthorization(address,bytes32,uint8,bytes32,bytes32)\":{\"params\":{\"authorizer\":\"Authorizer's address\",\"nonce\":\"Nonce of the authorization\",\"r\":\"r of the signature\",\"s\":\"s of the signature\",\"v\":\"v of the signature\"}},\"receiveWithAuthorization(address,address,uint256,uint256,uint256,bytes32,uint8,bytes32,bytes32)\":{\"details\":\"This has an additional check to ensure that the payee's address matches the caller of this function to prevent front-running attacks. (See security considerations)\",\"params\":{\"from\":\"Payer's address (Authorizer)\",\"nonce\":\"Unique nonce\",\"r\":\"r of the signature\",\"s\":\"s of the signature\",\"to\":\"Payee's address\",\"v\":\"v of the signature\",\"validAfter\":\"The time after which this is valid (unix time)\",\"validBefore\":\"The time before which this is valid (unix time)\",\"value\":\"Amount to be transferred\"}},\"transferWithAuthorization(address,address,uint256,uint256,uint256,bytes32,uint8,bytes32,bytes32)\":{\"params\":{\"from\":\"Payer's address (Authorizer)\",\"nonce\":\"Unique nonce\",\"r\":\"r of the signature\",\"s\":\"s of the signature\",\"to\":\"Payee's address\",\"v\":\"v of the signature\",\"validAfter\":\"The time after which this is valid (unix time)\",\"validBefore\":\"The time before which this is valid (unix time)\",\"value\":\"Amount to be transferred\"}}},\"stateVariables\":{\"_authorizationStates\":{\"details\":\"authorizer address => nonce => state (true = used / false = unused)\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"authorizationState(address,bytes32)\":{\"notice\":\"Returns the state of an authorization\"},\"cancelAuthorization(address,bytes32,uint8,bytes32,bytes32)\":{\"notice\":\"Attempt to cancel an authorization\"},\"receiveWithAuthorization(address,address,uint256,uint256,uint256,bytes32,uint8,bytes32,bytes32)\":{\"notice\":\"Receive a transfer with a signed authorization from the payer\"},\"transferWithAuthorization(address,address,uint256,uint256,uint256,bytes32,uint8,bytes32,bytes32)\":{\"notice\":\"Execute a transfer with a signed authorization\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/lib/EIP3009.sol\":\"EIP3009\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/lib/ECRecover.sol\":{\"keccak256\":\"0x7ca190bde28972b9464be1d282243c1548c4d6fac8012d5a52683262bd6208b5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://89e19b5d06980a4f05b58c32d6db0ff396bdbf47a6f6a72af19ea6c1879b76f2\",\"dweb:/ipfs/QmeCWHH4og3BewFAD5rwEPdGPDxbpx5ZazjBybCEEyoUrV\"]},\"project:/contracts/lib/EIP3009.sol\":{\"keccak256\":\"0x781ae878f157e82f1e875b0f158c684a736a349fe9dd5b3b2ab8ed179f0f9c0e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://4996f455d51be3cef6955ef17ab813272e3db14c1a8160405eb5301236bfa70d\",\"dweb:/ipfs/QmfJrUf7AmNwEnh4NofUnpeg3NuhE2EVUCAfFfVwWNGKdf\"]},\"project:/contracts/lib/EIP712.sol\":{\"keccak256\":\"0xd8452b3c6d4b67d2f2a5ae0bddda5652b4e52cfe429675b98435f728cf3fe87f\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://30b4a4eb9715dd019f5902b87759b17e6a9d50b5fc6e6584bff8c4ceef530e73\",\"dweb:/ipfs/QmdNhTmbNKNZfGZ4EdzE4YVEmQtrGrNBVDkd82docEkny9\"]},\"project:/contracts/lib/EIP712Domain.sol\":{\"keccak256\":\"0x81e2593665f43cc4da2945da1f7aa72fda1fcae3ab236f4b46793765656182d5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://9f31fc8847d034369148ec8652d7e8c06712d9035f9402d721003f7a3d129664\",\"dweb:/ipfs/QmYbP6j4RRZVDApNAyMNma4fKPy2ezjXGUDVKTWGoR4Tfq\"]},\"project:/contracts/lib/IERC20Internal.sol\":{\"keccak256\":\"0x16a2bbd895e23ac54cad8421b0a803cd91aee4e44d420e8e272db152f9ceca70\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f73be28fb3db37c183ac884b16453873415bba7dd18110af470ce2b1eff5d025\",\"dweb:/ipfs/QmdQ8WQQ29UqWzc3BFuR1bu1gYktgLZrR4XZjWe9a1CbpX\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
@@ -263,25 +263,25 @@
   "deployedGeneratedSources": [],
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "/**\n * SPDX-License-Identifier: MIT\n *\n * Copyright (c) 2020 CENTRE SECZ\n *\n * Permission is hereby granted, free of charge, to any person obtaining a copy\n * of this software and associated documentation files (the \"Software\"), to deal\n * in the Software without restriction, including without limitation the rights\n * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n * copies of the Software, and to permit persons to whom the Software is\n * furnished to do so, subject to the following conditions:\n *\n * The above copyright notice and this permission notice shall be included in\n * copies or substantial portions of the Software.\n *\n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */\n\npragma solidity >=0.4.22 <0.9.0;\n\nimport {IERC20Internal} from \"./IERC20Internal.sol\";\nimport {EIP712Domain} from \"./EIP712Domain.sol\";\nimport {EIP712} from \"./EIP712.sol\";\n\nabstract contract EIP3009 is IERC20Internal, EIP712Domain {\n    // keccak256(\"TransferWithAuthorization(address from,address to,uint256 value,uint256 validAfter,uint256 validBefore,bytes32 nonce)\")\n    bytes32 public constant TRANSFER_WITH_AUTHORIZATION_TYPEHASH =\n        keccak256(\n            \"TransferWithAuthorization(address from,address to,uint256 value,uint256 validAfter,uint256 validBefore,bytes32 nonce)\"\n        );\n\n    // keccak256(\"ReceiveWithAuthorization(address from,address to,uint256 value,uint256 validAfter,uint256 validBefore,bytes32 nonce)\")\n    bytes32 public constant RECEIVE_WITH_AUTHORIZATION_TYPEHASH =\n        keccak256(\n            \"ReceiveWithAuthorization(address from,address to,uint256 value,uint256 validAfter,uint256 validBefore,bytes32 nonce)\"\n        );\n\n    // keccak256(\"CancelAuthorization(address authorizer,bytes32 nonce)\")\n    bytes32 public constant CANCEL_AUTHORIZATION_TYPEHASH =\n        keccak256(\"CancelAuthorization(address authorizer,bytes32 nonce)\");\n\n    /**\n     * @dev authorizer address => nonce => state (true = used / false = unused)\n     */\n    mapping(address => mapping(bytes32 => bool)) internal _authorizationStates;\n\n    event AuthorizationUsed(address indexed authorizer, bytes32 indexed nonce);\n    event AuthorizationCanceled(\n        address indexed authorizer,\n        bytes32 indexed nonce\n    );\n\n    string internal constant _INVALID_SIGNATURE_ERROR =\n        \"EIP3009: invalid signature\";\n    string internal constant _AUTHORIZATION_USED_ERROR =\n        \"EIP3009: authorization is used\";\n\n    /**\n     * @notice Returns the state of an authorization\n     * @dev Nonces are randomly generated 32-byte data unique to the authorizer's\n     * address\n     * @param authorizer    Authorizer's address\n     * @param nonce         Nonce of the authorization\n     * @return True if the nonce is used\n     */\n    function authorizationState(address authorizer, bytes32 nonce)\n        external\n        view\n        returns (bool)\n    {\n        return _authorizationStates[authorizer][nonce];\n    }\n\n    /**\n     * @notice Execute a transfer with a signed authorization\n     * @param from          Payer's address (Authorizer)\n     * @param to            Payee's address\n     * @param value         Amount to be transferred\n     * @param validAfter    The time after which this is valid (unix time)\n     * @param validBefore   The time before which this is valid (unix time)\n     * @param nonce         Unique nonce\n     * @param v             v of the signature\n     * @param r             r of the signature\n     * @param s             s of the signature\n     */\n    function transferWithAuthorization(\n        address from,\n        address to,\n        uint256 value,\n        uint256 validAfter,\n        uint256 validBefore,\n        bytes32 nonce,\n        uint8 v,\n        bytes32 r,\n        bytes32 s\n    ) external {\n        _transferWithAuthorization(\n            TRANSFER_WITH_AUTHORIZATION_TYPEHASH,\n            from,\n            to,\n            value,\n            validAfter,\n            validBefore,\n            nonce,\n            v,\n            r,\n            s\n        );\n    }\n\n    /**\n     * @notice Receive a transfer with a signed authorization from the payer\n     * @dev This has an additional check to ensure that the payee's address matches\n     * the caller of this function to prevent front-running attacks. (See security\n     * considerations)\n     * @param from          Payer's address (Authorizer)\n     * @param to            Payee's address\n     * @param value         Amount to be transferred\n     * @param validAfter    The time after which this is valid (unix time)\n     * @param validBefore   The time before which this is valid (unix time)\n     * @param nonce         Unique nonce\n     * @param v             v of the signature\n     * @param r             r of the signature\n     * @param s             s of the signature\n     */\n    function receiveWithAuthorization(\n        address from,\n        address to,\n        uint256 value,\n        uint256 validAfter,\n        uint256 validBefore,\n        bytes32 nonce,\n        uint8 v,\n        bytes32 r,\n        bytes32 s\n    ) external {\n        require(to == msg.sender, \"EIP3009: caller must be the payee\");\n\n        _transferWithAuthorization(\n            RECEIVE_WITH_AUTHORIZATION_TYPEHASH,\n            from,\n            to,\n            value,\n            validAfter,\n            validBefore,\n            nonce,\n            v,\n            r,\n            s\n        );\n    }\n\n    /**\n     * @notice Attempt to cancel an authorization\n     * @param authorizer    Authorizer's address\n     * @param nonce         Nonce of the authorization\n     * @param v             v of the signature\n     * @param r             r of the signature\n     * @param s             s of the signature\n     */\n    function cancelAuthorization(\n        address authorizer,\n        bytes32 nonce,\n        uint8 v,\n        bytes32 r,\n        bytes32 s\n    ) external {\n        require(\n            !_authorizationStates[authorizer][nonce],\n            _AUTHORIZATION_USED_ERROR\n        );\n\n        bytes memory data = abi.encode(\n            CANCEL_AUTHORIZATION_TYPEHASH,\n            authorizer,\n            nonce\n        );\n        require(\n            EIP712.recover(DOMAIN_SEPARATOR, v, r, s, data) == authorizer,\n            _INVALID_SIGNATURE_ERROR\n        );\n\n        _authorizationStates[authorizer][nonce] = true;\n        emit AuthorizationCanceled(authorizer, nonce);\n    }\n\n    function _transferWithAuthorization(\n        bytes32 typeHash,\n        address from,\n        address to,\n        uint256 value,\n        uint256 validAfter,\n        uint256 validBefore,\n        bytes32 nonce,\n        uint8 v,\n        bytes32 r,\n        bytes32 s\n    ) internal {\n        require(\n            block.timestamp > validAfter,\n            \"EIP3009: authorization is not yet valid\"\n        );\n        require(\n            block.timestamp < validBefore,\n            \"EIP3009: authorization is expired\"\n        );\n        require(!_authorizationStates[from][nonce], _AUTHORIZATION_USED_ERROR);\n\n        bytes memory data = abi.encode(\n            typeHash,\n            from,\n            to,\n            value,\n            validAfter,\n            validBefore,\n            nonce\n        );\n        // require(\n        //     EIP712.recover(DOMAIN_SEPARATOR, v, r, s, data) == from,\n        //     _INVALID_SIGNATURE_ERROR\n        // );\n\n        _authorizationStates[from][nonce] = true;\n        emit AuthorizationUsed(from, nonce);\n\n        _transfer(from, to, value);\n    }\n}\n",
+  "source": "/**\n * SPDX-License-Identifier: MIT\n *\n * Copyright (c) 2020 CENTRE SECZ\n *\n * Permission is hereby granted, free of charge, to any person obtaining a copy\n * of this software and associated documentation files (the \"Software\"), to deal\n * in the Software without restriction, including without limitation the rights\n * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n * copies of the Software, and to permit persons to whom the Software is\n * furnished to do so, subject to the following conditions:\n *\n * The above copyright notice and this permission notice shall be included in\n * copies or substantial portions of the Software.\n *\n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */\n\npragma solidity >=0.4.22 <0.9.0;\n\nimport {IERC20Internal} from \"./IERC20Internal.sol\";\nimport {EIP712Domain} from \"./EIP712Domain.sol\";\nimport {EIP712} from \"./EIP712.sol\";\n\nabstract contract EIP3009 is IERC20Internal, EIP712Domain {\n    // keccak256(\"TransferWithAuthorization(address from,address to,uint256 value,uint256 validAfter,uint256 validBefore,bytes32 nonce)\")\n    bytes32 public constant TRANSFER_WITH_AUTHORIZATION_TYPEHASH =\n        keccak256(\n            \"TransferWithAuthorization(address from,address to,uint256 value,uint256 validAfter,uint256 validBefore,bytes32 nonce)\"\n        );\n\n    // keccak256(\"ReceiveWithAuthorization(address from,address to,uint256 value,uint256 validAfter,uint256 validBefore,bytes32 nonce)\")\n    bytes32 public constant RECEIVE_WITH_AUTHORIZATION_TYPEHASH =\n        keccak256(\n            \"ReceiveWithAuthorization(address from,address to,uint256 value,uint256 validAfter,uint256 validBefore,bytes32 nonce)\"\n        );\n\n    // keccak256(\"CancelAuthorization(address authorizer,bytes32 nonce)\")\n    bytes32 public constant CANCEL_AUTHORIZATION_TYPEHASH =\n        keccak256(\"CancelAuthorization(address authorizer,bytes32 nonce)\");\n\n    /**\n     * @dev authorizer address => nonce => state (true = used / false = unused)\n     */\n    mapping(address => mapping(bytes32 => bool)) internal _authorizationStates;\n\n    event AuthorizationUsed(address indexed authorizer, bytes32 indexed nonce);\n    event AuthorizationCanceled(\n        address indexed authorizer,\n        bytes32 indexed nonce\n    );\n\n    string internal constant _INVALID_SIGNATURE_ERROR =\n        \"EIP3009: invalid signature\";\n    string internal constant _AUTHORIZATION_USED_ERROR =\n        \"EIP3009: authorization is used\";\n\n    /**\n     * @notice Returns the state of an authorization\n     * @dev Nonces are randomly generated 32-byte data unique to the authorizer's\n     * address\n     * @param authorizer    Authorizer's address\n     * @param nonce         Nonce of the authorization\n     * @return True if the nonce is used\n     */\n    function authorizationState(address authorizer, bytes32 nonce)\n        external\n        view\n        returns (bool)\n    {\n        return _authorizationStates[authorizer][nonce];\n    }\n\n    /**\n     * @notice Execute a transfer with a signed authorization\n     * @param from          Payer's address (Authorizer)\n     * @param to            Payee's address\n     * @param value         Amount to be transferred\n     * @param validAfter    The time after which this is valid (unix time)\n     * @param validBefore   The time before which this is valid (unix time)\n     * @param nonce         Unique nonce\n     * @param v             v of the signature\n     * @param r             r of the signature\n     * @param s             s of the signature\n     */\n    function transferWithAuthorization(\n        address from,\n        address to,\n        uint256 value,\n        uint256 validAfter,\n        uint256 validBefore,\n        bytes32 nonce,\n        uint8 v,\n        bytes32 r,\n        bytes32 s\n    ) external {\n        _transferWithAuthorization(\n            TRANSFER_WITH_AUTHORIZATION_TYPEHASH,\n            from,\n            to,\n            value,\n            validAfter,\n            validBefore,\n            nonce,\n            v,\n            r,\n            s\n        );\n    }\n\n    /**\n     * @notice Receive a transfer with a signed authorization from the payer\n     * @dev This has an additional check to ensure that the payee's address matches\n     * the caller of this function to prevent front-running attacks. (See security\n     * considerations)\n     * @param from          Payer's address (Authorizer)\n     * @param to            Payee's address\n     * @param value         Amount to be transferred\n     * @param validAfter    The time after which this is valid (unix time)\n     * @param validBefore   The time before which this is valid (unix time)\n     * @param nonce         Unique nonce\n     * @param v             v of the signature\n     * @param r             r of the signature\n     * @param s             s of the signature\n     */\n    function receiveWithAuthorization(\n        address from,\n        address to,\n        uint256 value,\n        uint256 validAfter,\n        uint256 validBefore,\n        bytes32 nonce,\n        uint8 v,\n        bytes32 r,\n        bytes32 s\n    ) external {\n        require(to == msg.sender, \"EIP3009: caller must be the payee\");\n\n        _transferWithAuthorization(\n            RECEIVE_WITH_AUTHORIZATION_TYPEHASH,\n            from,\n            to,\n            value,\n            validAfter,\n            validBefore,\n            nonce,\n            v,\n            r,\n            s\n        );\n    }\n\n    /**\n     * @notice Attempt to cancel an authorization\n     * @param authorizer    Authorizer's address\n     * @param nonce         Nonce of the authorization\n     * @param v             v of the signature\n     * @param r             r of the signature\n     * @param s             s of the signature\n     */\n    function cancelAuthorization(\n        address authorizer,\n        bytes32 nonce,\n        uint8 v,\n        bytes32 r,\n        bytes32 s\n    ) external {\n        require(\n            !_authorizationStates[authorizer][nonce],\n            _AUTHORIZATION_USED_ERROR\n        );\n\n        bytes memory data = abi.encode(\n            CANCEL_AUTHORIZATION_TYPEHASH,\n            authorizer,\n            nonce\n        );\n        require(\n            EIP712.recover(DOMAIN_SEPARATOR, v, r, s, data) == authorizer,\n            _INVALID_SIGNATURE_ERROR\n        );\n\n        _authorizationStates[authorizer][nonce] = true;\n        emit AuthorizationCanceled(authorizer, nonce);\n    }\n\n    function _transferWithAuthorization(\n        bytes32 typeHash,\n        address from,\n        address to,\n        uint256 value,\n        uint256 validAfter,\n        uint256 validBefore,\n        bytes32 nonce,\n        uint8 v,\n        bytes32 r,\n        bytes32 s\n    ) internal {\n        require(\n            block.timestamp > validAfter,\n            \"EIP3009: authorization is not yet valid\"\n        );\n        require(\n            block.timestamp < validBefore,\n            \"EIP3009: authorization is expired\"\n        );\n        require(!_authorizationStates[from][nonce], _AUTHORIZATION_USED_ERROR);\n\n        bytes memory data = abi.encode(\n            typeHash,\n            from,\n            to,\n            value,\n            validAfter,\n            validBefore,\n            nonce\n        );\n        require(\n            EIP712.recover(DOMAIN_SEPARATOR, v, r, s, data) == from,\n            _INVALID_SIGNATURE_ERROR\n        );\n\n        _authorizationStates[from][nonce] = true;\n        emit AuthorizationUsed(from, nonce);\n\n        _transfer(from, to, value);\n    }\n}\n",
   "sourcePath": "/Users/koichi/dev/hackCoin/token/contracts/lib/EIP3009.sol",
   "ast": {
     "absolutePath": "project:/contracts/lib/EIP3009.sol",
     "exportedSymbols": {
       "EIP3009": [
-        1668
+        1682
       ],
       "EIP712": [
-        1751
+        1765
       ],
       "EIP712Domain": [
-        1757
+        1771
       ],
       "IERC20Internal": [
-        1810
+        1824
       ]
     },
-    "id": 1669,
+    "id": 1683,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
@@ -304,8 +304,8 @@
         "file": "./IERC20Internal.sol",
         "id": 1379,
         "nodeType": "ImportDirective",
-        "scope": 1669,
-        "sourceUnit": 1811,
+        "scope": 1683,
+        "sourceUnit": 1825,
         "src": "1183:52:8",
         "symbolAliases": [
           {
@@ -326,8 +326,8 @@
         "file": "./EIP712Domain.sol",
         "id": 1381,
         "nodeType": "ImportDirective",
-        "scope": 1669,
-        "sourceUnit": 1758,
+        "scope": 1683,
+        "sourceUnit": 1772,
         "src": "1236:48:8",
         "symbolAliases": [
           {
@@ -348,8 +348,8 @@
         "file": "./EIP712.sol",
         "id": 1383,
         "nodeType": "ImportDirective",
-        "scope": 1669,
-        "sourceUnit": 1752,
+        "scope": 1683,
+        "sourceUnit": 1766,
         "src": "1285:36:8",
         "symbolAliases": [
           {
@@ -373,7 +373,7 @@
               "id": 1384,
               "name": "IERC20Internal",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 1810,
+              "referencedDeclaration": 1824,
               "src": "1352:14:8"
             },
             "id": 1385,
@@ -385,7 +385,7 @@
               "id": 1386,
               "name": "EIP712Domain",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 1757,
+              "referencedDeclaration": 1771,
               "src": "1368:12:8"
             },
             "id": 1387,
@@ -394,16 +394,16 @@
           }
         ],
         "contractDependencies": [
-          1757,
-          1810
+          1771,
+          1824
         ],
         "contractKind": "contract",
         "fullyImplemented": false,
-        "id": 1668,
+        "id": 1682,
         "linearizedBaseContracts": [
-          1668,
-          1757,
-          1810
+          1682,
+          1771,
+          1824
         ],
         "name": "EIP3009",
         "nodeType": "ContractDefinition",
@@ -415,7 +415,7 @@
             "mutability": "constant",
             "name": "TRANSFER_WITH_AUTHORIZATION_TYPEHASH",
             "nodeType": "VariableDeclaration",
-            "scope": 1668,
+            "scope": 1682,
             "src": "1525:223:8",
             "stateVariable": true,
             "storageLocation": "default",
@@ -494,7 +494,7 @@
             "mutability": "constant",
             "name": "RECEIVE_WITH_AUTHORIZATION_TYPEHASH",
             "nodeType": "VariableDeclaration",
-            "scope": 1668,
+            "scope": 1682,
             "src": "1892:221:8",
             "stateVariable": true,
             "storageLocation": "default",
@@ -573,7 +573,7 @@
             "mutability": "constant",
             "name": "CANCEL_AUTHORIZATION_TYPEHASH",
             "nodeType": "VariableDeclaration",
-            "scope": 1668,
+            "scope": 1682,
             "src": "2194:130:8",
             "stateVariable": true,
             "storageLocation": "default",
@@ -657,7 +657,7 @@
             "mutability": "mutable",
             "name": "_authorizationStates",
             "nodeType": "VariableDeclaration",
-            "scope": 1668,
+            "scope": 1682,
             "src": "2427:74:8",
             "stateVariable": true,
             "storageLocation": "default",
@@ -859,7 +859,7 @@
             "mutability": "constant",
             "name": "_INVALID_SIGNATURE_ERROR",
             "nodeType": "VariableDeclaration",
-            "scope": 1668,
+            "scope": 1682,
             "src": "2695:88:8",
             "stateVariable": true,
             "storageLocation": "default",
@@ -901,7 +901,7 @@
             "mutability": "constant",
             "name": "_AUTHORIZATION_USED_ERROR",
             "nodeType": "VariableDeclaration",
-            "scope": 1668,
+            "scope": 1682,
             "src": "2789:93:8",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1119,7 +1119,7 @@
               ],
               "src": "3309:6:8"
             },
-            "scope": 1668,
+            "scope": 1682,
             "src": "3200:183:8",
             "stateMutability": "view",
             "virtual": false,
@@ -1302,7 +1302,7 @@
                       "name": "_transferWithAuthorization",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1667,
+                      "referencedDeclaration": 1681,
                       "src": "4214:26:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$_t_address_$_t_address_$_t_uint256_$_t_uint256_$_t_uint256_$_t_bytes32_$_t_uint8_$_t_bytes32_$_t_bytes32_$returns$__$",
@@ -1592,7 +1592,7 @@
               "parameters": [],
               "src": "4204:0:8"
             },
-            "scope": 1668,
+            "scope": 1682,
             "src": "3954:519:8",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -1895,7 +1895,7 @@
                       "name": "_transferWithAuthorization",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1667,
+                      "referencedDeclaration": 1681,
                       "src": "5581:26:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$_t_address_$_t_address_$_t_uint256_$_t_uint256_$_t_uint256_$_t_bytes32_$_t_uint8_$_t_bytes32_$_t_bytes32_$returns$__$",
@@ -2185,7 +2185,7 @@
               "parameters": [],
               "src": "5498:0:8"
             },
-            "scope": 1668,
+            "scope": 1682,
             "src": "5249:590:8",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -2484,7 +2484,7 @@
                               "name": "DOMAIN_SEPARATOR",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1756,
+                              "referencedDeclaration": 1770,
                               "src": "6609:16:8",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_bytes32",
@@ -2568,10 +2568,10 @@
                               "name": "EIP712",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1751,
+                              "referencedDeclaration": 1765,
                               "src": "6594:6:8",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_type$_t_contract$_EIP712_$1751_$",
+                                "typeIdentifier": "t_type$_t_contract$_EIP712_$1765_$",
                                 "typeString": "type(library EIP712)"
                               }
                             },
@@ -2582,7 +2582,7 @@
                             "lValueRequested": false,
                             "memberName": "recover",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 1750,
+                            "referencedDeclaration": 1764,
                             "src": "6594:14:8",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_internal_pure$_t_bytes32_$_t_uint8_$_t_bytes32_$_t_bytes32_$_t_bytes_memory_ptr_$returns$_t_address_$",
@@ -3006,7 +3006,7 @@
               "parameters": [],
               "src": "6306:0:8"
             },
-            "scope": 1668,
+            "scope": 1682,
             "src": "6156:666:8",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -3014,9 +3014,9 @@
           },
           {
             "body": {
-              "id": 1666,
+              "id": 1680,
               "nodeType": "Block",
-              "src": "7105:803:8",
+              "src": "7105:791:8",
               "statements": [
                 {
                   "expression": {
@@ -3406,7 +3406,7 @@
                       "mutability": "mutable",
                       "name": "data",
                       "nodeType": "VariableDeclaration",
-                      "scope": 1666,
+                      "scope": 1680,
                       "src": "7439:17:8",
                       "stateVariable": false,
                       "storageLocation": "memory",
@@ -3591,7 +3591,224 @@
                 },
                 {
                   "expression": {
-                    "id": 1653,
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 1657,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "arguments": [
+                            {
+                              "id": 1650,
+                              "name": "DOMAIN_SEPARATOR",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 1770,
+                              "src": "7668:16:8",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              }
+                            },
+                            {
+                              "id": 1651,
+                              "name": "v",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 1601,
+                              "src": "7686:1:8",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint8",
+                                "typeString": "uint8"
+                              }
+                            },
+                            {
+                              "id": 1652,
+                              "name": "r",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 1603,
+                              "src": "7689:1:8",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              }
+                            },
+                            {
+                              "id": 1653,
+                              "name": "s",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 1605,
+                              "src": "7692:1:8",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              }
+                            },
+                            {
+                              "id": 1654,
+                              "name": "data",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 1635,
+                              "src": "7695:4:8",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bytes_memory_ptr",
+                                "typeString": "bytes memory"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              },
+                              {
+                                "typeIdentifier": "t_uint8",
+                                "typeString": "uint8"
+                              },
+                              {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              },
+                              {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              },
+                              {
+                                "typeIdentifier": "t_bytes_memory_ptr",
+                                "typeString": "bytes memory"
+                              }
+                            ],
+                            "expression": {
+                              "id": 1648,
+                              "name": "EIP712",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 1765,
+                              "src": "7653:6:8",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_contract$_EIP712_$1765_$",
+                                "typeString": "type(library EIP712)"
+                              }
+                            },
+                            "id": 1649,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "recover",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 1764,
+                            "src": "7653:14:8",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_internal_pure$_t_bytes32_$_t_uint8_$_t_bytes32_$_t_bytes32_$_t_bytes_memory_ptr_$returns$_t_address_$",
+                              "typeString": "function (bytes32,uint8,bytes32,bytes32,bytes memory) pure returns (address)"
+                            }
+                          },
+                          "id": 1655,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "7653:47:8",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "id": 1656,
+                          "name": "from",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1589,
+                          "src": "7704:4:8",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "7653:55:8",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "id": 1658,
+                        "name": "_INVALID_SIGNATURE_ERROR",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1424,
+                        "src": "7722:24:8",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 1647,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "7632:7:8",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 1659,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "7632:124:8",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 1660,
+                  "nodeType": "ExpressionStatement",
+                  "src": "7632:124:8"
+                },
+                {
+                  "expression": {
+                    "id": 1667,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3599,25 +3816,25 @@
                     "leftHandSide": {
                       "baseExpression": {
                         "baseExpression": {
-                          "id": 1647,
+                          "id": 1661,
                           "name": "_authorizationStates",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 1409,
-                          "src": "7779:20:8",
+                          "src": "7767:20:8",
                           "typeDescriptions": {
                             "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_bytes32_$_t_bool_$_$",
                             "typeString": "mapping(address => mapping(bytes32 => bool))"
                           }
                         },
-                        "id": 1650,
+                        "id": 1664,
                         "indexExpression": {
-                          "id": 1648,
+                          "id": 1662,
                           "name": "from",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 1589,
-                          "src": "7800:4:8",
+                          "src": "7788:4:8",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -3628,20 +3845,20 @@
                         "isPure": false,
                         "lValueRequested": false,
                         "nodeType": "IndexAccess",
-                        "src": "7779:26:8",
+                        "src": "7767:26:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_bytes32_$_t_bool_$",
                           "typeString": "mapping(bytes32 => bool)"
                         }
                       },
-                      "id": 1651,
+                      "id": 1665,
                       "indexExpression": {
-                        "id": 1649,
+                        "id": 1663,
                         "name": "nonce",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 1599,
-                        "src": "7806:5:8",
+                        "src": "7794:5:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
@@ -3652,7 +3869,7 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "7779:33:8",
+                      "src": "7767:33:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
@@ -3662,52 +3879,52 @@
                     "operator": "=",
                     "rightHandSide": {
                       "hexValue": "74727565",
-                      "id": 1652,
+                      "id": 1666,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "bool",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "7815:4:8",
+                      "src": "7803:4:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
                       },
                       "value": "true"
                     },
-                    "src": "7779:40:8",
+                    "src": "7767:40:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 1654,
+                  "id": 1668,
                   "nodeType": "ExpressionStatement",
-                  "src": "7779:40:8"
+                  "src": "7767:40:8"
                 },
                 {
                   "eventCall": {
                     "arguments": [
                       {
-                        "id": 1656,
+                        "id": 1670,
                         "name": "from",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 1589,
-                        "src": "7852:4:8",
+                        "src": "7840:4:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         }
                       },
                       {
-                        "id": 1657,
+                        "id": 1671,
                         "name": "nonce",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 1599,
-                        "src": "7858:5:8",
+                        "src": "7846:5:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
@@ -3725,18 +3942,18 @@
                           "typeString": "bytes32"
                         }
                       ],
-                      "id": 1655,
+                      "id": 1669,
                       "name": "AuthorizationUsed",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 1415,
-                      "src": "7834:17:8",
+                      "src": "7822:17:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_bytes32_$returns$__$",
                         "typeString": "function (address,bytes32)"
                       }
                     },
-                    "id": 1658,
+                    "id": 1672,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3744,51 +3961,51 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "7834:30:8",
+                    "src": "7822:30:8",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1659,
+                  "id": 1673,
                   "nodeType": "EmitStatement",
-                  "src": "7829:35:8"
+                  "src": "7817:35:8"
                 },
                 {
                   "expression": {
                     "arguments": [
                       {
-                        "id": 1661,
+                        "id": 1675,
                         "name": "from",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 1589,
-                        "src": "7885:4:8",
+                        "src": "7873:4:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         }
                       },
                       {
-                        "id": 1662,
+                        "id": 1676,
                         "name": "to",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 1591,
-                        "src": "7891:2:8",
+                        "src": "7879:2:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         }
                       },
                       {
-                        "id": 1663,
+                        "id": 1677,
                         "name": "value",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 1593,
-                        "src": "7895:5:8",
+                        "src": "7883:5:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -3810,18 +4027,18 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 1660,
+                      "id": 1674,
                       "name": "_transfer",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1768,
-                      "src": "7875:9:8",
+                      "referencedDeclaration": 1782,
+                      "src": "7863:9:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$__$",
                         "typeString": "function (address,address,uint256)"
                       }
                     },
-                    "id": 1664,
+                    "id": 1678,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3829,20 +4046,20 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "7875:26:8",
+                    "src": "7863:26:8",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1665,
+                  "id": 1679,
                   "nodeType": "ExpressionStatement",
-                  "src": "7875:26:8"
+                  "src": "7863:26:8"
                 }
               ]
             },
-            "id": 1667,
+            "id": 1681,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -3858,7 +4075,7 @@
                   "mutability": "mutable",
                   "name": "typeHash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1667,
+                  "scope": 1681,
                   "src": "6873:16:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3884,7 +4101,7 @@
                   "mutability": "mutable",
                   "name": "from",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1667,
+                  "scope": 1681,
                   "src": "6899:12:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3911,7 +4128,7 @@
                   "mutability": "mutable",
                   "name": "to",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1667,
+                  "scope": 1681,
                   "src": "6921:10:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3938,7 +4155,7 @@
                   "mutability": "mutable",
                   "name": "value",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1667,
+                  "scope": 1681,
                   "src": "6941:13:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3964,7 +4181,7 @@
                   "mutability": "mutable",
                   "name": "validAfter",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1667,
+                  "scope": 1681,
                   "src": "6964:18:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3990,7 +4207,7 @@
                   "mutability": "mutable",
                   "name": "validBefore",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1667,
+                  "scope": 1681,
                   "src": "6992:19:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4016,7 +4233,7 @@
                   "mutability": "mutable",
                   "name": "nonce",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1667,
+                  "scope": 1681,
                   "src": "7021:13:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4042,7 +4259,7 @@
                   "mutability": "mutable",
                   "name": "v",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1667,
+                  "scope": 1681,
                   "src": "7044:7:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4068,7 +4285,7 @@
                   "mutability": "mutable",
                   "name": "r",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1667,
+                  "scope": 1681,
                   "src": "7061:9:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4094,7 +4311,7 @@
                   "mutability": "mutable",
                   "name": "s",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1667,
+                  "scope": 1681,
                   "src": "7080:9:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4123,36 +4340,36 @@
               "parameters": [],
               "src": "7105:0:8"
             },
-            "scope": 1668,
-            "src": "6828:1080:8",
+            "scope": 1682,
+            "src": "6828:1068:8",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "internal"
           }
         ],
-        "scope": 1669,
-        "src": "1323:6587:8"
+        "scope": 1683,
+        "src": "1323:6575:8"
       }
     ],
-    "src": "1149:6762:8"
+    "src": "1149:6750:8"
   },
   "legacyAST": {
     "absolutePath": "project:/contracts/lib/EIP3009.sol",
     "exportedSymbols": {
       "EIP3009": [
-        1668
+        1682
       ],
       "EIP712": [
-        1751
+        1765
       ],
       "EIP712Domain": [
-        1757
+        1771
       ],
       "IERC20Internal": [
-        1810
+        1824
       ]
     },
-    "id": 1669,
+    "id": 1683,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
@@ -4175,8 +4392,8 @@
         "file": "./IERC20Internal.sol",
         "id": 1379,
         "nodeType": "ImportDirective",
-        "scope": 1669,
-        "sourceUnit": 1811,
+        "scope": 1683,
+        "sourceUnit": 1825,
         "src": "1183:52:8",
         "symbolAliases": [
           {
@@ -4197,8 +4414,8 @@
         "file": "./EIP712Domain.sol",
         "id": 1381,
         "nodeType": "ImportDirective",
-        "scope": 1669,
-        "sourceUnit": 1758,
+        "scope": 1683,
+        "sourceUnit": 1772,
         "src": "1236:48:8",
         "symbolAliases": [
           {
@@ -4219,8 +4436,8 @@
         "file": "./EIP712.sol",
         "id": 1383,
         "nodeType": "ImportDirective",
-        "scope": 1669,
-        "sourceUnit": 1752,
+        "scope": 1683,
+        "sourceUnit": 1766,
         "src": "1285:36:8",
         "symbolAliases": [
           {
@@ -4244,7 +4461,7 @@
               "id": 1384,
               "name": "IERC20Internal",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 1810,
+              "referencedDeclaration": 1824,
               "src": "1352:14:8"
             },
             "id": 1385,
@@ -4256,7 +4473,7 @@
               "id": 1386,
               "name": "EIP712Domain",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 1757,
+              "referencedDeclaration": 1771,
               "src": "1368:12:8"
             },
             "id": 1387,
@@ -4265,16 +4482,16 @@
           }
         ],
         "contractDependencies": [
-          1757,
-          1810
+          1771,
+          1824
         ],
         "contractKind": "contract",
         "fullyImplemented": false,
-        "id": 1668,
+        "id": 1682,
         "linearizedBaseContracts": [
-          1668,
-          1757,
-          1810
+          1682,
+          1771,
+          1824
         ],
         "name": "EIP3009",
         "nodeType": "ContractDefinition",
@@ -4286,7 +4503,7 @@
             "mutability": "constant",
             "name": "TRANSFER_WITH_AUTHORIZATION_TYPEHASH",
             "nodeType": "VariableDeclaration",
-            "scope": 1668,
+            "scope": 1682,
             "src": "1525:223:8",
             "stateVariable": true,
             "storageLocation": "default",
@@ -4365,7 +4582,7 @@
             "mutability": "constant",
             "name": "RECEIVE_WITH_AUTHORIZATION_TYPEHASH",
             "nodeType": "VariableDeclaration",
-            "scope": 1668,
+            "scope": 1682,
             "src": "1892:221:8",
             "stateVariable": true,
             "storageLocation": "default",
@@ -4444,7 +4661,7 @@
             "mutability": "constant",
             "name": "CANCEL_AUTHORIZATION_TYPEHASH",
             "nodeType": "VariableDeclaration",
-            "scope": 1668,
+            "scope": 1682,
             "src": "2194:130:8",
             "stateVariable": true,
             "storageLocation": "default",
@@ -4528,7 +4745,7 @@
             "mutability": "mutable",
             "name": "_authorizationStates",
             "nodeType": "VariableDeclaration",
-            "scope": 1668,
+            "scope": 1682,
             "src": "2427:74:8",
             "stateVariable": true,
             "storageLocation": "default",
@@ -4730,7 +4947,7 @@
             "mutability": "constant",
             "name": "_INVALID_SIGNATURE_ERROR",
             "nodeType": "VariableDeclaration",
-            "scope": 1668,
+            "scope": 1682,
             "src": "2695:88:8",
             "stateVariable": true,
             "storageLocation": "default",
@@ -4772,7 +4989,7 @@
             "mutability": "constant",
             "name": "_AUTHORIZATION_USED_ERROR",
             "nodeType": "VariableDeclaration",
-            "scope": 1668,
+            "scope": 1682,
             "src": "2789:93:8",
             "stateVariable": true,
             "storageLocation": "default",
@@ -4990,7 +5207,7 @@
               ],
               "src": "3309:6:8"
             },
-            "scope": 1668,
+            "scope": 1682,
             "src": "3200:183:8",
             "stateMutability": "view",
             "virtual": false,
@@ -5173,7 +5390,7 @@
                       "name": "_transferWithAuthorization",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1667,
+                      "referencedDeclaration": 1681,
                       "src": "4214:26:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$_t_address_$_t_address_$_t_uint256_$_t_uint256_$_t_uint256_$_t_bytes32_$_t_uint8_$_t_bytes32_$_t_bytes32_$returns$__$",
@@ -5463,7 +5680,7 @@
               "parameters": [],
               "src": "4204:0:8"
             },
-            "scope": 1668,
+            "scope": 1682,
             "src": "3954:519:8",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -5766,7 +5983,7 @@
                       "name": "_transferWithAuthorization",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1667,
+                      "referencedDeclaration": 1681,
                       "src": "5581:26:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$_t_address_$_t_address_$_t_uint256_$_t_uint256_$_t_uint256_$_t_bytes32_$_t_uint8_$_t_bytes32_$_t_bytes32_$returns$__$",
@@ -6056,7 +6273,7 @@
               "parameters": [],
               "src": "5498:0:8"
             },
-            "scope": 1668,
+            "scope": 1682,
             "src": "5249:590:8",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -6355,7 +6572,7 @@
                               "name": "DOMAIN_SEPARATOR",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1756,
+                              "referencedDeclaration": 1770,
                               "src": "6609:16:8",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_bytes32",
@@ -6439,10 +6656,10 @@
                               "name": "EIP712",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1751,
+                              "referencedDeclaration": 1765,
                               "src": "6594:6:8",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_type$_t_contract$_EIP712_$1751_$",
+                                "typeIdentifier": "t_type$_t_contract$_EIP712_$1765_$",
                                 "typeString": "type(library EIP712)"
                               }
                             },
@@ -6453,7 +6670,7 @@
                             "lValueRequested": false,
                             "memberName": "recover",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 1750,
+                            "referencedDeclaration": 1764,
                             "src": "6594:14:8",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_internal_pure$_t_bytes32_$_t_uint8_$_t_bytes32_$_t_bytes32_$_t_bytes_memory_ptr_$returns$_t_address_$",
@@ -6877,7 +7094,7 @@
               "parameters": [],
               "src": "6306:0:8"
             },
-            "scope": 1668,
+            "scope": 1682,
             "src": "6156:666:8",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -6885,9 +7102,9 @@
           },
           {
             "body": {
-              "id": 1666,
+              "id": 1680,
               "nodeType": "Block",
-              "src": "7105:803:8",
+              "src": "7105:791:8",
               "statements": [
                 {
                   "expression": {
@@ -7277,7 +7494,7 @@
                       "mutability": "mutable",
                       "name": "data",
                       "nodeType": "VariableDeclaration",
-                      "scope": 1666,
+                      "scope": 1680,
                       "src": "7439:17:8",
                       "stateVariable": false,
                       "storageLocation": "memory",
@@ -7462,7 +7679,224 @@
                 },
                 {
                   "expression": {
-                    "id": 1653,
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 1657,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "arguments": [
+                            {
+                              "id": 1650,
+                              "name": "DOMAIN_SEPARATOR",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 1770,
+                              "src": "7668:16:8",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              }
+                            },
+                            {
+                              "id": 1651,
+                              "name": "v",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 1601,
+                              "src": "7686:1:8",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint8",
+                                "typeString": "uint8"
+                              }
+                            },
+                            {
+                              "id": 1652,
+                              "name": "r",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 1603,
+                              "src": "7689:1:8",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              }
+                            },
+                            {
+                              "id": 1653,
+                              "name": "s",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 1605,
+                              "src": "7692:1:8",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              }
+                            },
+                            {
+                              "id": 1654,
+                              "name": "data",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 1635,
+                              "src": "7695:4:8",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bytes_memory_ptr",
+                                "typeString": "bytes memory"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              },
+                              {
+                                "typeIdentifier": "t_uint8",
+                                "typeString": "uint8"
+                              },
+                              {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              },
+                              {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              },
+                              {
+                                "typeIdentifier": "t_bytes_memory_ptr",
+                                "typeString": "bytes memory"
+                              }
+                            ],
+                            "expression": {
+                              "id": 1648,
+                              "name": "EIP712",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 1765,
+                              "src": "7653:6:8",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_contract$_EIP712_$1765_$",
+                                "typeString": "type(library EIP712)"
+                              }
+                            },
+                            "id": 1649,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "recover",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 1764,
+                            "src": "7653:14:8",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_internal_pure$_t_bytes32_$_t_uint8_$_t_bytes32_$_t_bytes32_$_t_bytes_memory_ptr_$returns$_t_address_$",
+                              "typeString": "function (bytes32,uint8,bytes32,bytes32,bytes memory) pure returns (address)"
+                            }
+                          },
+                          "id": 1655,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "7653:47:8",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "id": 1656,
+                          "name": "from",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1589,
+                          "src": "7704:4:8",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "7653:55:8",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "id": 1658,
+                        "name": "_INVALID_SIGNATURE_ERROR",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1424,
+                        "src": "7722:24:8",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 1647,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "7632:7:8",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 1659,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "7632:124:8",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 1660,
+                  "nodeType": "ExpressionStatement",
+                  "src": "7632:124:8"
+                },
+                {
+                  "expression": {
+                    "id": 1667,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -7470,25 +7904,25 @@
                     "leftHandSide": {
                       "baseExpression": {
                         "baseExpression": {
-                          "id": 1647,
+                          "id": 1661,
                           "name": "_authorizationStates",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 1409,
-                          "src": "7779:20:8",
+                          "src": "7767:20:8",
                           "typeDescriptions": {
                             "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_bytes32_$_t_bool_$_$",
                             "typeString": "mapping(address => mapping(bytes32 => bool))"
                           }
                         },
-                        "id": 1650,
+                        "id": 1664,
                         "indexExpression": {
-                          "id": 1648,
+                          "id": 1662,
                           "name": "from",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 1589,
-                          "src": "7800:4:8",
+                          "src": "7788:4:8",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -7499,20 +7933,20 @@
                         "isPure": false,
                         "lValueRequested": false,
                         "nodeType": "IndexAccess",
-                        "src": "7779:26:8",
+                        "src": "7767:26:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_bytes32_$_t_bool_$",
                           "typeString": "mapping(bytes32 => bool)"
                         }
                       },
-                      "id": 1651,
+                      "id": 1665,
                       "indexExpression": {
-                        "id": 1649,
+                        "id": 1663,
                         "name": "nonce",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 1599,
-                        "src": "7806:5:8",
+                        "src": "7794:5:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
@@ -7523,7 +7957,7 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "7779:33:8",
+                      "src": "7767:33:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
@@ -7533,52 +7967,52 @@
                     "operator": "=",
                     "rightHandSide": {
                       "hexValue": "74727565",
-                      "id": 1652,
+                      "id": 1666,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "bool",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "7815:4:8",
+                      "src": "7803:4:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
                       },
                       "value": "true"
                     },
-                    "src": "7779:40:8",
+                    "src": "7767:40:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 1654,
+                  "id": 1668,
                   "nodeType": "ExpressionStatement",
-                  "src": "7779:40:8"
+                  "src": "7767:40:8"
                 },
                 {
                   "eventCall": {
                     "arguments": [
                       {
-                        "id": 1656,
+                        "id": 1670,
                         "name": "from",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 1589,
-                        "src": "7852:4:8",
+                        "src": "7840:4:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         }
                       },
                       {
-                        "id": 1657,
+                        "id": 1671,
                         "name": "nonce",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 1599,
-                        "src": "7858:5:8",
+                        "src": "7846:5:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
@@ -7596,18 +8030,18 @@
                           "typeString": "bytes32"
                         }
                       ],
-                      "id": 1655,
+                      "id": 1669,
                       "name": "AuthorizationUsed",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 1415,
-                      "src": "7834:17:8",
+                      "src": "7822:17:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_bytes32_$returns$__$",
                         "typeString": "function (address,bytes32)"
                       }
                     },
-                    "id": 1658,
+                    "id": 1672,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -7615,51 +8049,51 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "7834:30:8",
+                    "src": "7822:30:8",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1659,
+                  "id": 1673,
                   "nodeType": "EmitStatement",
-                  "src": "7829:35:8"
+                  "src": "7817:35:8"
                 },
                 {
                   "expression": {
                     "arguments": [
                       {
-                        "id": 1661,
+                        "id": 1675,
                         "name": "from",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 1589,
-                        "src": "7885:4:8",
+                        "src": "7873:4:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         }
                       },
                       {
-                        "id": 1662,
+                        "id": 1676,
                         "name": "to",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 1591,
-                        "src": "7891:2:8",
+                        "src": "7879:2:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         }
                       },
                       {
-                        "id": 1663,
+                        "id": 1677,
                         "name": "value",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 1593,
-                        "src": "7895:5:8",
+                        "src": "7883:5:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -7681,18 +8115,18 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 1660,
+                      "id": 1674,
                       "name": "_transfer",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1768,
-                      "src": "7875:9:8",
+                      "referencedDeclaration": 1782,
+                      "src": "7863:9:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$__$",
                         "typeString": "function (address,address,uint256)"
                       }
                     },
-                    "id": 1664,
+                    "id": 1678,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -7700,20 +8134,20 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "7875:26:8",
+                    "src": "7863:26:8",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1665,
+                  "id": 1679,
                   "nodeType": "ExpressionStatement",
-                  "src": "7875:26:8"
+                  "src": "7863:26:8"
                 }
               ]
             },
-            "id": 1667,
+            "id": 1681,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -7729,7 +8163,7 @@
                   "mutability": "mutable",
                   "name": "typeHash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1667,
+                  "scope": 1681,
                   "src": "6873:16:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -7755,7 +8189,7 @@
                   "mutability": "mutable",
                   "name": "from",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1667,
+                  "scope": 1681,
                   "src": "6899:12:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -7782,7 +8216,7 @@
                   "mutability": "mutable",
                   "name": "to",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1667,
+                  "scope": 1681,
                   "src": "6921:10:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -7809,7 +8243,7 @@
                   "mutability": "mutable",
                   "name": "value",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1667,
+                  "scope": 1681,
                   "src": "6941:13:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -7835,7 +8269,7 @@
                   "mutability": "mutable",
                   "name": "validAfter",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1667,
+                  "scope": 1681,
                   "src": "6964:18:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -7861,7 +8295,7 @@
                   "mutability": "mutable",
                   "name": "validBefore",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1667,
+                  "scope": 1681,
                   "src": "6992:19:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -7887,7 +8321,7 @@
                   "mutability": "mutable",
                   "name": "nonce",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1667,
+                  "scope": 1681,
                   "src": "7021:13:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -7913,7 +8347,7 @@
                   "mutability": "mutable",
                   "name": "v",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1667,
+                  "scope": 1681,
                   "src": "7044:7:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -7939,7 +8373,7 @@
                   "mutability": "mutable",
                   "name": "r",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1667,
+                  "scope": 1681,
                   "src": "7061:9:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -7965,7 +8399,7 @@
                   "mutability": "mutable",
                   "name": "s",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1667,
+                  "scope": 1681,
                   "src": "7080:9:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -7994,18 +8428,18 @@
               "parameters": [],
               "src": "7105:0:8"
             },
-            "scope": 1668,
-            "src": "6828:1080:8",
+            "scope": 1682,
+            "src": "6828:1068:8",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "internal"
           }
         ],
-        "scope": 1669,
-        "src": "1323:6587:8"
+        "scope": 1683,
+        "src": "1323:6575:8"
       }
     ],
-    "src": "1149:6762:8"
+    "src": "1149:6750:8"
   },
   "compiler": {
     "name": "solc",
@@ -8013,7 +8447,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2022-01-19T06:02:13.514Z",
+  "updatedAt": "2022-01-20T16:56:29.965Z",
   "devdoc": {
     "kind": "dev",
     "methods": {
