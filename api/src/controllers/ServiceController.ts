@@ -10,8 +10,10 @@ import {
 import { Wallet } from '../models/WalletModel';
 import { Service, ServiceInput, ServiceModel } from '../models/ServiceModel';
 import { json } from 'body-parser';
+import { requiresAuth } from 'express-openid-connect';
 
 @JsonController('/service')
+@UseBefore(requiresAuth())
 export class ServiceController {
   @Get('/')
   getAllWallets(): Promise<Service[]> {

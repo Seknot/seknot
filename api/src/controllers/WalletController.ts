@@ -12,8 +12,16 @@ import {
 } from 'routing-controllers';
 import WalletModel, { Wallet, WalletOutput } from '../models/WalletModel';
 import { json } from 'body-parser';
+import { auth, requiredScopes } from 'express-oauth2-jwt-bearer';
+
+const checkJwt = auth({
+  audience: 'https://api.seknot.net',
+  issuerBaseURL: 'https://dev-xe71ik8z.us.auth0.com/',
+});
 
 @JsonController('/wallet')
+@UseBefore(checkJwt)
+@UseBefore(requiredScopes('read:wallet'))
 export class WalletController {
   @Get('/')
   async getAllWallets(): Promise<WalletOutput[]> {
