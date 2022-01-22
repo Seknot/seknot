@@ -8,7 +8,7 @@ export default async function createToken(
   token: Token,
   serviceWallet: Wallet,
 ): Promise<Token> {
-  const provider = new ethers.providers.InfuraProvider('ropsten', {
+  const provider = new ethers.providers.InfuraProvider('maticmum', {
     projectId: process.env.INFURA_PROJECT_ID,
     projectSecret: process.env.INFURA_PROJECT_SECRET,
   });

@@ -23,7 +23,7 @@ export interface Token {
   name: string;
   totalSupply: number;
   symbol: string;
-  version: number;
+  version: string;
   decimals: number;
   created_at: string;
   serviceWallet?: string;

@@ -1,4 +1,4 @@
-import { Contract, ethers } from 'ethers';
+import { BigNumber, Contract, ethers } from 'ethers';
 import WalletModel, { Wallet } from '../../models/WalletModel';
 import { Token } from '../../models/TokenModel';
 import { Service } from '../../models/ServiceModel';
@@ -6,7 +6,6 @@ import Web3 from 'web3';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import EIP712Domain from 'eth-typed-data';
-import { SimpleSigner } from 'did-jwt';
 
 const ABI = require('../../assets/token/build/Token.json').abi;
 
@@ -16,7 +15,7 @@ export class TokenService {
   serviceWallet!: ethers.Wallet;
   token!: Token;
   provider!: ethers.providers.InfuraProvider;
-  ITX_Contract = '0x015C7C7A7D65bbdb117C573007219107BD7486f9';
+  ITX_Contract = '0x92A663df3553ED10BCb300B9bA0D8a2f3bea5a85'; //ITX Contract
   web3!: any;
 
   static async init(wallet: Wallet, token: Token, service: Service) {
@@ -24,7 +23,7 @@ export class TokenService {
 
     obj.token = token;
 
-    const provider = new ethers.providers.InfuraProvider('ropsten', {
+    const provider = new ethers.providers.InfuraProvider('maticmum', {
       projectId: process.env.INFURA_PROJECT_ID,
       projectSecret: process.env.INFURA_PROJECT_SECRET,
     });
@@ -45,6 +44,14 @@ export class TokenService {
     const balance: any = await this.contract.balanceOf(this.wallet.address);
 
     return balance / 10 ** this.token.decimals;
+  }
+
+  async getWalletBalance(): Promise<number> {
+    return (await this.wallet.getBalance()).toNumber();
+  }
+
+  async getServiceWalletBalance(): Promise<string> {
+    return ethers.utils.formatEther(await this.serviceWallet.getBalance());
   }
 
   async getITXBalance(): Promise<number> {
@@ -140,7 +147,7 @@ export class TokenService {
     const hash = ethers.utils.keccak256(
       ethers.utils.defaultAbiCoder.encode(
         ['address', 'bytes', 'uint', 'uint', 'string'],
-        [tx.to, tx.data, tx.gas, 3, tx.schedule], // Ropsten chainId is 3
+        [tx.to, tx.data, tx.gas, await this.wallet.getChainId(), tx.schedule], // Ropsten chainId is 3
       ),
     );
     const signature = await this.serviceWallet.signMessage(
