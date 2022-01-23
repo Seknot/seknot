@@ -8,6 +8,7 @@ import Web3 from 'web3';
 import EIP712Domain from 'eth-typed-data';
 
 const ABI = require('../../assets/token/build/Token.json').abi;
+import axios from 'axios';
 
 export class TokenService {
   contract!: ethers.Contract;

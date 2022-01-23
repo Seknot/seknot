@@ -5,34 +5,40 @@ import {
   JsonController,
   Param,
   Post,
+  UseAfter,
   UseBefore,
 } from 'routing-controllers';
 import { Wallet } from '../models/WalletModel';
 import { Service, ServiceInput, ServiceModel } from '../models/ServiceModel';
 import { json } from 'body-parser';
-import { requiresAuth } from 'express-openid-connect';
+import { jwtCheck } from '../utils/JwtAuth';
+import { requiredScopes } from 'express-oauth2-jwt-bearer';
 
 @JsonController('/service')
-@UseBefore(requiresAuth())
+@UseBefore(jwtCheck)
 export class ServiceController {
   @Get('/')
-  getAllWallets(): Promise<Service[]> {
+  @UseAfter(requiredScopes('read:service'))
+  getAllServices(): Promise<Service[]> {
     return ServiceModel.getServices();
   }
 
   @Get('/:id')
-  getWallet(@Param('id') id: string): Promise<Service> {
+  @UseAfter(requiredScopes('read:service'))
+  getService(@Param('id') id: string): Promise<Service> {
     return ServiceModel.getService(id);
   }
 
   @Post('/')
+  @UseAfter(requiredScopes('create:service'))
   @UseBefore(json())
-  createNewWallet(@Body() input: ServiceInput): Promise<Service> {
+  createNewService(@Body() input: ServiceInput): Promise<Service> {
     return ServiceModel.createService(input);
   }
 
   @Delete('/:id')
-  deleteWallet(@Param('id') id: string): Promise<Wallet> {
+  @UseAfter(requiredScopes('delete:service'))
+  deleteService(@Param('id') id: string): Promise<Wallet> {
     return ServiceModel.deleteService(id);
   }
 }

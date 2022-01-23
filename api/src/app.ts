@@ -6,14 +6,15 @@ import { WalletController } from './controllers/WalletController';
 import { TokenController } from './controllers/TokenController';
 import { ServiceController } from './controllers/ServiceController';
 import { auth } from 'express-openid-connect';
+import session from 'cookie-session';
 
 const config = {
   authRequired: false,
   auth0Logout: true,
-  secret: '86ea16dbdcdd905949fd8f9dd7630902df051b27c4450c233ce938e0ab9c9c73',
+  secret: process.env.SECRET,
   baseURL: 'http://localhost:3000',
-  clientID: 'XDONVPzikQnVNgNkVu6aoBPfN5t4itt2',
-  issuerBaseURL: 'https://dev-xe71ik8z.us.auth0.com',
+  clientID: process.env.CLIENT_ID,
+  issuerBaseURL: process.env.ISSUER_BASE_URL,
 };
 
 const app = createExpressServer({
@@ -30,5 +31,20 @@ const app = createExpressServer({
 app.use(express.json());
 app.use(auth(config));
 app.use(express.urlencoded({ extended: true }));
+app.use(
+  session({
+    name: 'identity102-l01-e01',
+    secret: process.env.COOKIE_SECRET,
+  }),
+);
+app.get(
+  '/',
+  (
+    req: { oidc: { isAuthenticated: () => any } },
+    res: { send: (arg0: string) => void },
+  ) => {
+    res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+  },
+);
 
 export default app;

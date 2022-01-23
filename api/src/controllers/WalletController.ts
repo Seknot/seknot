@@ -8,22 +8,19 @@ import {
   Param,
   Post,
   QueryParam,
+  UseAfter,
   UseBefore,
 } from 'routing-controllers';
 import WalletModel, { Wallet, WalletOutput } from '../models/WalletModel';
 import { json } from 'body-parser';
-import { auth, requiredScopes } from 'express-oauth2-jwt-bearer';
-
-const checkJwt = auth({
-  audience: 'https://api.seknot.net',
-  issuerBaseURL: 'https://dev-xe71ik8z.us.auth0.com/',
-});
+import { jwtCheck } from '../utils/JwtAuth';
+import { requiredScopes } from 'express-oauth2-jwt-bearer';
 
 @JsonController('/wallet')
-@UseBefore(checkJwt)
-@UseBefore(requiredScopes('read:wallet'))
+@UseBefore(jwtCheck)
 export class WalletController {
   @Get('/')
+  @UseAfter(requiredScopes('read:wallet'))
   async getAllWallets(): Promise<WalletOutput[]> {
     const wallets: Wallet[] = await WalletModel.getWallets();
     const output: WalletOutput[] = wallets.map((wallet) => {
@@ -38,12 +35,14 @@ export class WalletController {
   }
 
   @Get('/:address')
+  @UseAfter(requiredScopes('read:wallet'))
   getWallet(@Param('address') address: string): Promise<WalletOutput> {
     return WalletModel.getWalletByAddressOutput(address);
   }
 
   @Post('/')
   @UseBefore(json())
+  @UseAfter(requiredScopes('create:wallet'))
   async createNewWallet(
     @BodyParam('serviceId', { required: true }) serviceId: string,
   ): Promise<WalletOutput> {
@@ -58,6 +57,7 @@ export class WalletController {
   }
 
   @Delete('/')
+  @UseAfter(requiredScopes('delete:wallet'))
   deleteWallet(
     @QueryParam('id', { required: true }) id: string,
   ): Promise<Wallet> {

@@ -7,6 +7,7 @@ import {
   NotFoundError,
   Param,
   Post,
+  UseAfter,
   UseBefore,
 } from 'routing-controllers';
 import TokenModel from '../models/TokenModel';
@@ -15,6 +16,8 @@ import WalletModel, { Wallet } from '../models/WalletModel';
 import { json } from 'body-parser';
 import { Service, ServiceModel } from '../models/ServiceModel';
 import { TokenService } from '../service/token/TokenService';
+import { requiredScopes } from 'express-oauth2-jwt-bearer';
+import { jwtCheck } from '../utils/JwtAuth';
 
 interface MintAddressInput {
   toAddress: string;
@@ -22,19 +25,23 @@ interface MintAddressInput {
 }
 
 @Controller('/token')
+@UseBefore(jwtCheck)
 export class TokenController {
   @Get('/')
+  @UseAfter(requiredScopes('read:token'))
   getAllTokens(): Promise<Token[]> {
     return TokenModel.getTokens();
   }
 
   @Get('/:address')
+  @UseAfter(requiredScopes('read:token'))
   getToken(@Param('address') address: string): Promise<Token> {
     return TokenModel.getToken(address);
   }
 
   @Post('/')
   @UseBefore(json())
+  @UseAfter(requiredScopes('create:token'))
   async createToken(
     @Body() token: Token,
     @BodyParam('serviceWallet', { required: true }) walletAddress: string,
@@ -47,6 +54,7 @@ export class TokenController {
   }
 
   @Post('/:address/mint')
+  @UseAfter(requiredScopes('issue:token'))
   @UseBefore(json())
   async issueToken(
     @Param('address') tokenAddress: string,
@@ -69,6 +77,7 @@ export class TokenController {
   }
 
   @Post('/:address/transfer')
+  @UseAfter(requiredScopes('transfer:token'))
   @UseBefore(json())
   async sendToken(
     @Param('address') tokenAddress: string,
