@@ -1,6 +1,10 @@
 <template>
   <div>
     <hero />
+    <div class="justify-content-center d-flex px-1">
+      <a class="btn btn-outline-success btn-lg m-2" href="https://docs.seknot.net">Document</a>
+      <a class="btn btn-outline-primary btn-lg m-2" href="https://seknot.stoplight.io/docs/developer-api">API Docs</a>
+    </div>
     <hr />
     <home-content />
   </div>
