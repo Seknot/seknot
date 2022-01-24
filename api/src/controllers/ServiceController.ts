@@ -1,5 +1,6 @@
 import {
   Body,
+  BodyParam,
   Delete,
   Get,
   JsonController,
@@ -8,37 +9,71 @@ import {
   UseAfter,
   UseBefore,
 } from 'routing-controllers';
-import { Wallet } from '../models/WalletModel';
-import { Service, ServiceInput, ServiceModel } from '../models/ServiceModel';
+import ServiceModel, { Service, ServiceInput } from '../models/ServiceModel';
 import { json } from 'body-parser';
 import { jwtCheck } from '../utils/JwtAuth';
 import { requiredScopes } from 'express-oauth2-jwt-bearer';
+import WalletModel, { Wallet, WalletOutput } from '../models/WalletModel';
+import TokenModel, { Token } from '../models/TokenModel';
+import { GasService, TokenService } from '../service/token/TokenService';
+import { BigNumber, ethers } from 'ethers';
 
 @JsonController('/service')
-@UseBefore(jwtCheck)
+// @UseBefore(jwtCheck)
 export class ServiceController {
   @Get('/')
   @UseAfter(requiredScopes('read:service'))
-  getAllServices(): Promise<Service[]> {
+  async getAllServices(): Promise<Service[]> {
+    console.log(await ServiceModel.getServices());
+
     return ServiceModel.getServices();
   }
 
   @Get('/:id')
   @UseAfter(requiredScopes('read:service'))
-  getService(@Param('id') id: string): Promise<Service> {
+  async getService(@Param('id') id: string): Promise<Service> {
     return ServiceModel.getService(id);
   }
 
   @Post('/')
-  @UseAfter(requiredScopes('create:service'))
   @UseBefore(json())
-  createNewService(@Body() input: ServiceInput): Promise<Service> {
+  @UseAfter(requiredScopes('create:service'))
+  async createNewService(@Body() input: ServiceInput): Promise<Service> {
     return ServiceModel.createService(input);
   }
 
   @Delete('/:id')
   @UseAfter(requiredScopes('delete:service'))
-  deleteService(@Param('id') id: string): Promise<Wallet> {
+  async deleteService(@Param('id') id: string): Promise<any> {
     return ServiceModel.deleteService(id);
+  }
+
+  @Get('/:id/deposit')
+  @UseAfter(requiredScopes('read:service'))
+  async getITXBalance(@Param('id') id: string): Promise<number> {
+    const service: Service = await ServiceModel.getService(id);
+    const gasService = await GasService.init(service);
+
+    return gasService.getITXBalance();
+  }
+
+  @Get('/:id/balance')
+  @UseAfter(requiredScopes('read:service'))
+  async getServiceWalletBalance(@Param('id') id: string): Promise<string> {
+    const service: Service = await ServiceModel.getService(id);
+    const gasService = await GasService.init(service);
+
+    return ethers.utils.formatEther(await gasService.getServiceWalletBalance());
+  }
+
+  @Post('/:id/deposit')
+  async depositGas(
+    @Param('id') id: string,
+    @BodyParam('value') value: number,
+  ): Promise<any> {
+    const service: Service = await ServiceModel.getService(id);
+    const gasService = await GasService.init(service);
+
+    return gasService.depositGAS(value);
   }
 }

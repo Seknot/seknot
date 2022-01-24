@@ -7,28 +7,33 @@ import { TokenController } from './controllers/TokenController';
 import { ServiceController } from './controllers/ServiceController';
 import { auth } from 'express-openid-connect';
 import session from 'cookie-session';
+import bodyParser from 'body-parser';
 
 const config = {
   authRequired: false,
   auth0Logout: true,
   secret: process.env.SECRET,
-  baseURL: 'http://localhost:3000',
+  baseURL:
+    process.env.NODE_ENV == 'production'
+      ? 'https://api.seknot.net'
+      : 'http://localhost:3000',
   clientID: process.env.CLIENT_ID,
   issuerBaseURL: process.env.ISSUER_BASE_URL,
 };
 
 const app = createExpressServer({
-  development: process.env.NODE_ENV !== 'production' ? true : false,
+  // development: process.env.NODE_ENV !== 'production' ? true : false,
+  development: true,
   controllers: [
+    ServiceController,
     DefaultController,
     WalletController,
     TokenController,
-    ServiceController,
   ],
 });
 
 // Middleware
-app.use(express.json());
+app.use(bodyParser.json());
 app.use(auth(config));
 app.use(express.urlencoded({ extended: true }));
 app.use(

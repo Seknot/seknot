@@ -10,11 +10,10 @@ import {
   UseAfter,
   UseBefore,
 } from 'routing-controllers';
-import TokenModel from '../models/TokenModel';
-import TokenMode, { Token } from '../models/TokenModel';
+import TokenModel, { Token } from '../models/TokenModel';
 import WalletModel, { Wallet } from '../models/WalletModel';
 import { json } from 'body-parser';
-import { Service, ServiceModel } from '../models/ServiceModel';
+import ServiceModel, { Service } from '../models/ServiceModel';
 import { TokenService } from '../service/token/TokenService';
 import { requiredScopes } from 'express-oauth2-jwt-bearer';
 import { jwtCheck } from '../utils/JwtAuth';
@@ -39,6 +38,23 @@ export class TokenController {
     return TokenModel.getToken(address);
   }
 
+  @Get('/:address/:walletAddress/balance')
+  async getBalance(
+    @Param('address') address: string,
+    @Param('walletAddress') walletAddress: string,
+  ): Promise<string> {
+    const wallet: Wallet = await WalletModel.getWalletByAddress(walletAddress);
+    const token: Token = await TokenModel.getToken(address);
+    if (token.serviceWallet == null) throw new NotFoundError('Token No Found');
+    const service: Service = await ServiceModel.getServiceByAddress(
+      token.serviceWallet,
+    );
+    const tokenController = await TokenService.init(wallet, token, service);
+    const balance = await tokenController.getBalance();
+
+    return balance.toString();
+  }
+
   @Post('/')
   @UseBefore(json())
   @UseAfter(requiredScopes('create:token'))
@@ -49,8 +65,9 @@ export class TokenController {
     const serviceWallet: Wallet = await WalletModel.getWalletByAddress(
       walletAddress,
     );
+    console.log(token);
 
-    return await TokenMode.createToken(token, serviceWallet);
+    return await TokenModel.createToken(token, serviceWallet);
   }
 
   @Post('/:address/mint')
@@ -81,19 +98,20 @@ export class TokenController {
   @UseBefore(json())
   async sendToken(
     @Param('address') tokenAddress: string,
-    @Body() fromAddress: string,
-    @Body() toAddress: string,
-    @Body() value: number,
+    @BodyParam('fromAddress') fromAddress: string,
+    @BodyParam('toAddress') toAddress: string,
+    @BodyParam('value') value: number,
   ): Promise<string> {
     const wallet: Wallet = await WalletModel.getWalletByAddress(fromAddress);
     const token: Token = await TokenModel.getToken(tokenAddress);
+    if (token.serviceWallet == null) throw new NotFoundError('Token No Found');
     const service: Service = await ServiceModel.getServiceByAddress(
-      token.address,
+      token.serviceWallet,
     );
     const tokenController = await TokenService.init(wallet, token, service);
 
     return await tokenController.sendToken(
-      await WalletModel.getWalletByAddress(tokenAddress),
+      await WalletModel.getWalletByAddress(toAddress),
       value,
     );
   }

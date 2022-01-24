@@ -19,7 +19,7 @@ export default async function createToken(
     compiled.bytecode,
     wallet,
   );
-
+  console.log(token);
   const instance = await contract.deploy(
     token.name,
     token.version,

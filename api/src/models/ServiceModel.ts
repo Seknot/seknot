@@ -20,8 +20,6 @@ export interface Service {
   id: string;
   name: string;
   serviceWallet: string;
-  userWallets: string[];
-  accessUsers: string[];
   created_at: string;
   updated_at: string;
 }
@@ -31,12 +29,13 @@ export interface ServiceInput {
   uid: string;
 }
 
-export class ServiceModel {
+export default class ServiceModel {
   static async getServices(): Promise<Service[]> {
     const cmd = new ScanCommand({
       TableName: 'Services',
     } as ScanCommandInput);
     const output: ScanCommandOutput = await documentClient.send(cmd);
+    console.log('DB', output);
 
     return output.Items as Service[];
   }
@@ -78,8 +77,6 @@ export class ServiceModel {
       id: randomUUID(),
       name: input.name,
       serviceWallet: serviceWallet.address,
-      userWallets: [],
-      accessUsers: [input.uid],
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
     };

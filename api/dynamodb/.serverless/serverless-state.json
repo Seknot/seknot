@@ -429,7 +429,7 @@
         "exclude": [
           "templates/**"
         ],
-        "artifactDirectoryName": "serverless/seknotDynamoDb/dev/1642424530342-2022-01-17T13:02:10.342Z"
+        "artifactDirectoryName": "serverless/seknotDynamoDb/dev/1642941486071-2022-01-23T12:38:06.071Z"
       },
       "resources": {
         "$ref": "$[\"service\"][\"resources\"]"
@@ -442,7 +442,7 @@
     "isDashboardMonitoringPreconfigured": false
   },
   "package": {
-    "artifactDirectoryName": "serverless/seknotDynamoDb/dev/1642424530342-2022-01-17T13:02:10.342Z",
+    "artifactDirectoryName": "serverless/seknotDynamoDb/dev/1642941486071-2022-01-23T12:38:06.071Z",
     "artifact": ""
   }
 }

@@ -8,7 +8,6 @@ import Web3 from 'web3';
 import EIP712Domain from 'eth-typed-data';
 
 const ABI = require('../../assets/token/build/Token.json').abi;
-import axios from 'axios';
 
 export class TokenService {
   contract!: ethers.Contract;
@@ -53,25 +52,6 @@ export class TokenService {
 
   async getServiceWalletBalance(): Promise<string> {
     return ethers.utils.formatEther(await this.serviceWallet.getBalance());
-  }
-
-  async getITXBalance(): Promise<number> {
-    const balance: any = await this.provider.send('relay_getBalance', [
-      this.serviceWallet.address,
-    ]);
-
-    return balance.balance / 10 ** 18;
-  }
-
-  async depositGAS(
-    balance: number,
-  ): Promise<ethers.providers.TransactionReceipt> {
-    const tx = await this.serviceWallet.sendTransaction({
-      to: this.ITX_Contract,
-      value: ethers.utils.parseUnits(String(balance), 'ether'),
-    });
-
-    return await tx.wait();
   }
 
   async transfer(
@@ -174,5 +154,52 @@ export class TokenService {
       new ethers.Wallet(to.privateKey, this.provider),
       balance,
     );
+  }
+}
+
+export class GasService {
+  serviceWallet!: ethers.Wallet;
+  provider!: ethers.providers.InfuraProvider;
+  ITX_Contract = '0x92A663df3553ED10BCb300B9bA0D8a2f3bea5a85'; //ITX Contract
+  web3!: any;
+
+  static async init(service: Service) {
+    const obj = new GasService();
+
+    const provider = new ethers.providers.InfuraProvider('maticmum', {
+      projectId: process.env.INFURA_PROJECT_ID,
+      projectSecret: process.env.INFURA_PROJECT_SECRET,
+    });
+    obj.provider = provider;
+
+    const serviceWallet: Wallet = await WalletModel.getWalletByAddress(
+      service.serviceWallet,
+    );
+    obj.serviceWallet = new ethers.Wallet(serviceWallet.privateKey, provider);
+
+    return obj;
+  }
+
+  async getITXBalance(): Promise<number> {
+    const balance: any = await this.provider.send('relay_getBalance', [
+      this.serviceWallet.address,
+    ]);
+
+    return balance.balance / 10 ** 18;
+  }
+
+  async depositGAS(
+    balance: number,
+  ): Promise<ethers.providers.TransactionReceipt> {
+    const tx = await this.serviceWallet.sendTransaction({
+      to: this.ITX_Contract,
+      value: ethers.utils.parseUnits(String(balance), 'ether'),
+    });
+
+    return await tx.wait();
+  }
+
+  async getServiceWalletBalance(): Promise<BigNumber> {
+    return await this.serviceWallet.getBalance();
   }
 }
