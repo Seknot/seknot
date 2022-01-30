@@ -1,7 +1,9 @@
 <template>
   <div class="next-steps">
-    <h2 class="my-5 text-center">Seknotの機能</h2>
-
+    <h2 class="my-4 text-center">Seknotの機能</h2>
+    <div class="alert alert-danger text-center" role="alert">
+      このPlatformはBeta版です
+    </div>
     <div class="row">
       <div class="col-md-5 mb-4">
         <h6 class="mb-3">

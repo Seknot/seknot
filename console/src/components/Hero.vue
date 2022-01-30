@@ -4,6 +4,9 @@
     <p class="lead">
       あなただけの暗号資産で新しい世界を
     </p>
+    <div class="alert alert-success" role="alert">
+      来週頃からBeta版公開予定！
+    </div>
   </div>
 </template>
 
