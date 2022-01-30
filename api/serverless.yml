@@ -23,6 +23,7 @@ provider:
         - 'arn:aws:dynamodb:${self:provider.region}:*:table/Users'
         - 'arn:aws:dynamodb:${self:provider.region}:*:table/Wallets'
         - 'arn:aws:dynamodb:${self:provider.region}:*:table/Tokens'
+        - 'arn:aws:dynamodb:${self:provider.region}:*:table/Services'
 
 functions:
   app:

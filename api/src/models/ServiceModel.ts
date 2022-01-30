@@ -35,7 +35,6 @@ export default class ServiceModel {
       TableName: 'Services',
     } as ScanCommandInput);
     const output: ScanCommandOutput = await documentClient.send(cmd);
-    console.log('DB', output);
 
     return output.Items as Service[];
   }

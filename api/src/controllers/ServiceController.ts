@@ -24,8 +24,6 @@ export class ServiceController {
   @Get('/')
   @UseAfter(requiredScopes('read:service'))
   async getAllServices(): Promise<Service[]> {
-    console.log(await ServiceModel.getServices());
-
     return ServiceModel.getServices();
   }
 
