@@ -23,7 +23,7 @@ const config = {
 };
 
 const app = createExpressServer({
-  development: process.env.NODE_ENV !== 'production' ? true : false,
+  development: process.env.NODE_ENV !== 'prod' ? true : false,
   controllers: [
     ServiceController,
     DefaultController,
