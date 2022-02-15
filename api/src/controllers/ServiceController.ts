@@ -14,8 +14,10 @@ import { json } from 'body-parser';
 import { requiredScopes } from 'express-oauth2-jwt-bearer';
 import { GasService } from '../service/token/TokenService';
 import { ethers } from 'ethers';
+import { jwtCheck } from '../utils/JwtAuth';
 
 @JsonController('/service')
+@UseBefore(jwtCheck)
 export class ServiceController {
   @Get('/')
   @UseAfter(requiredScopes('read:service'))

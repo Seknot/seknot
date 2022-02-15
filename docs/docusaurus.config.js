@@ -4,7 +4,20 @@
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
-/** @type {import('@docusaurus/types').Config} */
+const redocusaurus = [
+  "redocusaurus",
+  {
+    debug: Boolean(process.env.DEBUG || process.env.CI),
+    specs: [
+      {
+        spec: "./assets/Seknot.yml",
+        routePath: "/api",
+      },
+    ],
+  },
+];
+
+/** @type {import("@docusaurus/types").Config} */
 const config = {
   title: "Seknot",
   tagline: "あなただけの暗号資産で新しい世界を",
@@ -15,32 +28,22 @@ const config = {
   favicon: "img/favicon.ico",
   organizationName: "seknot", // Usually your GitHub org/user name.
   projectName: "seknot", // Usually your repo name.
-
   presets: [
+    redocusaurus,
     [
-      "classic",
-      /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
+      "@docusaurus/preset-classic",
+      {
+        debug: Boolean(process.env.DEBUG || process.env.CI),
+        theme: { customCss: [require.resolve("./src/css/custom.css")] },
         docs: {
-          sidebarPath: require.resolve("./sidebars.js"),
-          // Please change this to your repo.
-          editUrl: "https://github.com/seknot",
+          routeBasePath: "/docs",
+          editUrl: "https://github.com/rohit-gohri/redocusaurus/edit/main/",
         },
-        // blog: {
-        //   showReadingTime: true,
-        //   // Please change this to your repo.
-        //   editUrl:
-        //     "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
-        // },
-        theme: {
-          customCss: require.resolve("./src/css/custom.css"),
-        },
-      }),
+      },
     ],
   ],
-
   themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+    /** @type {import("@docusaurus/preset-classic").ThemeConfig} */
     ({
       navbar: {
         title: "Document",
@@ -55,12 +58,11 @@ const config = {
             position: "left",
             label: "Tutorial",
           },
-          // { to: "/blog", label: "Blog", position: "left" },
-          // {
-          //   href: "https://github.com/facebook/docusaurus",
-          //   label: "GitHub",
-          //   position: "right",
-          // },
+          {
+            position: "left",
+            label: "API Docs",
+            to: "/api",
+          },
         ],
       },
       footer: {
@@ -113,6 +115,7 @@ const config = {
         darkTheme: darkCodeTheme,
       },
     }),
+  plugins: ["docusaurus-plugin-redoc"],
 };
 
 module.exports = config;

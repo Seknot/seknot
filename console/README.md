@@ -1,86 +1,69 @@
-# Scenario #1 - Logging In and Gated Content
+# console
 
-This sample demonstrates:
-
-- Logging in to Auth0 using Redirect Mode
-- Accessing profile information that has been provided in the ID token
-- Gated content. The `/profile` route is not accessible without having first logged in
-
-**Note**: This sample has been designed to work with Vue 2, and has not yet been updated to work with Vue 3.
-
-## Project setup
+## Build Setup
 
 ```bash
-npm install
+# install dependencies
+$ yarn install
+
+# serve with hot reload at localhost:3000
+$ yarn dev
+
+# build for production and launch server
+$ yarn build
+$ yarn start
+
+# generate static project
+$ yarn generate
 ```
 
-### Configuration
+For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
 
-The project needs to be configured with your Auth0 domain and client ID in order for the authentication flow to work.
+## Special Directories
 
-To do this, first copy `auth_config.json.example` into a new file in the same folder called `auth_config.json`, and replace the values within with your own Auth0 application credentials:
+You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
 
-```json
-{
-  "domain": "<YOUR AUTH0 DOMAIN>",
-  "clientId": "<YOUR AUTH0 CLIENT ID>"
-}
-```
+### `assets`
 
-### Compiles and hot-reloads for development
+The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
 
-```bash
-npm run serve
-```
+More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
 
-## Deployment
+### `components`
 
-### Compiles and minifies for production
+The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
 
-```bash
-npm run build
-```
+More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
 
-### Docker build
+### `layouts`
 
-To build and run the Docker image, run `exec.sh`, or `exec.ps1` on Windows.
+Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
 
-### Run your tests
+More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
 
-```bash
-npm run test
-```
 
-### Lints and fixes files
+### `pages`
 
-```bash
-npm run lint
-```
+This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
 
-## What is Auth0?
+More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
 
-Auth0 helps you to:
+### `plugins`
 
-- Add authentication with [multiple authentication sources](https://docs.auth0.com/identityproviders), either social like **Google, Facebook, Microsoft Account, LinkedIn, GitHub, Twitter, Box, Salesforce, among others**, or enterprise identity systems like **Windows Azure AD, Google Apps, Active Directory, ADFS or any SAML Identity Provider**.
-- Add authentication through more traditional **[username/password databases](https://docs.auth0.com/mysql-connection-tutorial)**.
-- Add support for **[linking different user accounts](https://docs.auth0.com/link-accounts)** with the same user.
-- Support for generating signed [Json Web Tokens](https://docs.auth0.com/jwt) to call your APIs and **flow the user identity** securely.
-- Analytics of how, when and where users are logging in.
-- Pull data from other sources and add it to the user profile, through [JavaScript rules](https://docs.auth0.com/rules).
+The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
 
-## Create a Free Auth0 Account
+More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
 
-1.  Go to [Auth0](https://auth0.com/signup) and click Sign Up.
-2.  Use Google, GitHub or Microsoft Account to login.
+### `static`
 
-## Issue Reporting
+This directory contains your static files. Each file inside this directory is mapped to `/`.
 
-If you have found a bug or if you have a feature request, please report them at this repository issues section. Please do not report security vulnerabilities on the public GitHub issue tracker. The [Responsible Disclosure Program](https://auth0.com/whitehat) details the procedure for disclosing security issues.
+Example: `/static/robots.txt` is mapped as `/robots.txt`.
 
-## Author
+More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
 
-[Auth0](https://auth0.com)
+### `store`
 
-## License
+This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
 
-This project is licensed under the MIT license. See the [LICENSE](../LICENSE) file for more info.
+More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).

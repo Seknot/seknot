@@ -9,13 +9,14 @@ import { auth } from 'express-openid-connect';
 import session from 'cookie-session';
 import bodyParser from 'body-parser';
 import { APIController } from './controllers/APIController';
+import cors from 'cors';
 
 const config = {
   authRequired: false,
   auth0Logout: true,
   secret: process.env.SECRET,
   baseURL:
-    process.env.NODE_ENV == 'production'
+    process.env.NODE_ENV == 'prod'
       ? 'https://api.seknot.net'
       : 'http://localhost:3000',
   clientID: process.env.CLIENT_ID,
@@ -37,20 +38,13 @@ const app = createExpressServer({
 app.use(bodyParser.json());
 app.use(auth(config));
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 app.use(
   session({
     name: 'identity102-l01-e01',
     secret: process.env.COOKIE_SECRET,
   }),
 );
-app.get(
-  '/',
-  (
-    req: { oidc: { isAuthenticated: () => any } },
-    res: { send: (arg0: string) => void },
-  ) => {
-    res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
-  },
-);
+app.options('*', cors());
 
 export default app;

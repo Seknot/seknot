@@ -30,8 +30,10 @@ functions:
     handler: src/handler.handler
     timeout: 30
     events:
-      - http: ANY /
-      - http: 'ANY {proxy+}'
+      - http:
+          method: any
+          path: /{proxy+}
+          cors: true
 
 package:
   exclude: # デプロイパッケージから除外
