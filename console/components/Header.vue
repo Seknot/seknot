@@ -29,13 +29,12 @@ export default Vue.extend({
   name: 'Header',
   created () {
     this.$forceUpdate()
-    console.log(this.$store.state.auth.user)
   },
   methods: {
     async login () {
       this.$auth.loginWith('auth0')
-        .then(() => {
-          this.$forceUpdate();
+        .then((res) => {
+          console.log(res);
         })
     },
     async logout () {

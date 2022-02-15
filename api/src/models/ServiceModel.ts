@@ -18,6 +18,7 @@ import { NotFoundError } from 'routing-controllers';
 
 export interface Service {
   id: string;
+  uid: string;
   name: string;
   serviceWallet: string;
   created_at: string;
@@ -75,6 +76,7 @@ export default class ServiceModel {
     const newService: Service = {
       id: randomUUID(),
       name: input.name,
+      uid: input.uid,
       serviceWallet: serviceWallet.address,
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
