@@ -11,15 +11,11 @@ import {
 } from 'routing-controllers';
 import ServiceModel, { Service, ServiceInput } from '../models/ServiceModel';
 import { json } from 'body-parser';
-import { jwtCheck } from '../utils/JwtAuth';
 import { requiredScopes } from 'express-oauth2-jwt-bearer';
-import WalletModel, { Wallet, WalletOutput } from '../models/WalletModel';
-import TokenModel, { Token } from '../models/TokenModel';
-import { GasService, TokenService } from '../service/token/TokenService';
-import { BigNumber, ethers } from 'ethers';
+import { GasService } from '../service/token/TokenService';
+import { ethers } from 'ethers';
 
 @JsonController('/service')
-// @UseBefore(jwtCheck)
 export class ServiceController {
   @Get('/')
   @UseAfter(requiredScopes('read:service'))

@@ -8,6 +8,7 @@ import { ServiceController } from './controllers/ServiceController';
 import { auth } from 'express-openid-connect';
 import session from 'cookie-session';
 import bodyParser from 'body-parser';
+import { APIController } from './controllers/APIController';
 
 const config = {
   authRequired: false,
@@ -22,13 +23,13 @@ const config = {
 };
 
 const app = createExpressServer({
-  // development: process.env.NODE_ENV !== 'production' ? true : false,
-  development: true,
+  development: process.env.NODE_ENV !== 'production' ? true : false,
   controllers: [
     ServiceController,
     DefaultController,
     WalletController,
     TokenController,
+    APIController,
   ],
 });
 
