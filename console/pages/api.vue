@@ -45,9 +45,8 @@ export default {
     }
   },
   async mounted () {
-    // await this.getServices()
-    // await this.getAPIKey()
-    console.log(await axios.get(BASE_URL+'/info/status'));
+    await this.getServices()
+    await this.getAPIKey()
   },
   methods: {
     async createService () {
