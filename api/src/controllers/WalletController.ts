@@ -1,6 +1,4 @@
 import {
-  BadRequestError,
-  Body,
   BodyParam,
   Delete,
   Get,
@@ -15,8 +13,9 @@ import WalletModel, { Wallet, WalletOutput } from '../models/WalletModel';
 import { json } from 'body-parser';
 import { jwtCheck } from '../utils/JwtAuth';
 import { requiredScopes } from 'express-oauth2-jwt-bearer';
-
+import cors from 'cors';
 @JsonController('/wallet')
+@UseBefore(cors())
 @UseBefore(jwtCheck)
 export class WalletController {
   @Get('/')

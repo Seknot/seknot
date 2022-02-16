@@ -45,8 +45,9 @@ export default {
     }
   },
   async mounted () {
-    await this.getServices()
-    await this.getAPIKey()
+    // await this.getServices()
+    // await this.getAPIKey()
+    console.log(await axios.get(BASE_URL+'/info/status'));
   },
   methods: {
     async createService () {
@@ -72,7 +73,6 @@ export default {
         method: 'GET',
         url: BASE_URL + '/service',
         headers: {
-          'Content-Type': 'application/json',
           Authorization: accessToken
         }
       }
@@ -92,7 +92,6 @@ export default {
         method: 'GET',
         url: BASE_URL + '/user/get-api-key',
         headers: {
-          'Content-Type': 'application/json',
           Authorization: accessToken
         }
       }

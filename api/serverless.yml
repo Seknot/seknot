@@ -10,6 +10,7 @@ provider:
   profile: default
   environment:
     NODE_ENV: ${self:provider.stage}
+  endpointType: "regional"
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -31,8 +32,8 @@ functions:
     timeout: 30
     events:
       - http:
-          method: any
           path: /{proxy+}
+          method: any
           cors: true
 
 package:

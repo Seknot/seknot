@@ -15,8 +15,10 @@ import { requiredScopes } from 'express-oauth2-jwt-bearer';
 import { GasService } from '../service/token/TokenService';
 import { ethers } from 'ethers';
 import { jwtCheck } from '../utils/JwtAuth';
+import cors from 'cors';
 
 @JsonController('/service')
+@UseBefore(cors())
 @UseBefore(jwtCheck)
 export class ServiceController {
   @Get('/')

@@ -1,5 +1,4 @@
 import {
-  BadRequestError,
   Body,
   BodyParam,
   Controller,
@@ -17,13 +16,14 @@ import ServiceModel, { Service } from '../models/ServiceModel';
 import { TokenService } from '../service/token/TokenService';
 import { requiredScopes } from 'express-oauth2-jwt-bearer';
 import { jwtCheck } from '../utils/JwtAuth';
-
+import cors from 'cors';
 interface MintAddressInput {
   toAddress: string;
   value: number;
 }
 
 @Controller('/token')
+@UseBefore(cors())
 @UseBefore(jwtCheck)
 export class TokenController {
   @Get('/')

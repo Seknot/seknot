@@ -1,6 +1,7 @@
 import { Get, JsonController, UseAfter, UseBefore } from 'routing-controllers';
 import { requiredScopes } from 'express-oauth2-jwt-bearer';
 import { jwtCheck } from '../utils/JwtAuth';
+import cors from 'cors';
 
 interface APIKey {
   client_id: string | undefined;
@@ -8,6 +9,7 @@ interface APIKey {
 }
 
 @JsonController('/user')
+@UseBefore(cors())
 @UseBefore(jwtCheck)
 export class APIController {
   @Get('/get-api-key')

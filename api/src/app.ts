@@ -6,10 +6,33 @@ import { WalletController } from './controllers/WalletController';
 import { TokenController } from './controllers/TokenController';
 import { ServiceController } from './controllers/ServiceController';
 import { auth } from 'express-openid-connect';
-import session from 'cookie-session';
 import bodyParser from 'body-parser';
 import { APIController } from './controllers/APIController';
-import cors from 'cors';
+
+const allowCrossDomain = function (
+  req: { method: string },
+  res: {
+    header: (arg0: string, arg1: string) => void;
+    send: (arg0: number) => void;
+  },
+  next: () => void,
+) {
+  res.header('Access-Control-Allow-Origin', 'https://www.seknot.net');
+  res.header(
+    'Access-Control-Allow-Methods',
+    'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT',
+  );
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+  );
+  // intercept OPTIONS method
+  if ('OPTIONS' === req.method) {
+    res.send(200);
+  } else {
+    next();
+  }
+};
 
 const config = {
   authRequired: false,
@@ -35,16 +58,10 @@ const app = createExpressServer({
 });
 
 // Middleware
+// app.use(cors());
+app.use(allowCrossDomain);
 app.use(bodyParser.json());
 app.use(auth(config));
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
-app.use(
-  session({
-    name: 'identity102-l01-e01',
-    secret: process.env.COOKIE_SECRET,
-  }),
-);
-app.options('*', cors());
 
 export default app;
