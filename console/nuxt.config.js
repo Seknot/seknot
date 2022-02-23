@@ -5,7 +5,7 @@ export default {
   head: {
     title: "console",
     htmlAttrs: {
-      lang: "en",
+      lang: "ja",
     },
     meta: [
       { charset: "utf-8" },
@@ -83,7 +83,7 @@ export default {
       },
     },
     redirect: {
-      login: "/login", // 未ログイン時のリダイレクト先
+      login: "/", // 未ログイン時のリダイレクト先
       logout: "/", // ログアウト処理を実行した直後のリダイレクト先
       callback: "/callback", // コールバックURL
       home: "/", // ログイン後に遷移するページ

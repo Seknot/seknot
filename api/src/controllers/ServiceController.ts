@@ -27,6 +27,12 @@ export class ServiceController {
     return ServiceModel.getServices();
   }
 
+  @Get('/all/:uid')
+  @UseAfter(requiredScopes('read:service'))
+  async getAllUserServices(@Param('uid') uid: string): Promise<Service[]> {
+    return ServiceModel.getServicesByUID(uid);
+  }
+
   @Get('/:id')
   @UseAfter(requiredScopes('read:service'))
   async getService(@Param('id') id: string): Promise<Service> {

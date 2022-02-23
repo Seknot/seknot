@@ -40,6 +40,19 @@ export default class ServiceModel {
     return output.Items as Service[];
   }
 
+  static async getServicesByUID(uid: string): Promise<Service[]> {
+    const cmd = new ScanCommand({
+      TableName: 'Services',
+      FilterExpression: 'uid = :uid',
+      ExpressionAttributeValues: {
+        ':uid': uid,
+      },
+    } as ScanCommandInput);
+    const output: ScanCommandOutput = await documentClient.send(cmd);
+
+    return output.Items as Service[];
+  }
+
   static async getService(id: string): Promise<Service> {
     const cmd = new GetCommand({
       TableName: 'Services',

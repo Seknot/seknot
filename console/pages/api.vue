@@ -29,75 +29,98 @@
   </b-container>
 </template>
 
-<script>
-import axios from 'axios'
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
+import axios, { AxiosRequestConfig } from 'axios'
 
 const BASE_URL = 'https://api.seknot.net'
 
-export default {
-  name: 'api',
-  middleware: 'auth',
-  data () {
-    return {
-      items: [],
-      serviceName: '',
-      apiKey: {}
-    }
-  },
+interface Item {
+  name: string;
+  wallet: string;
+  id: string;
+}
+
+interface ApiKey {
+  client_id: string;
+  client_secret: string;
+}
+
+export interface Service {
+  id: string;
+  uid: string;
+  name: string;
+  serviceWallet: string;
+  created_at: string;
+  updated_at: string;
+}
+
+@Component({
+  middleware: ['auth']
+})
+export default class ApiComponent extends Vue {
+  items: Item[] = []
+  serviceName: string = ''
+  apiKey: ApiKey = {
+    client_id: '',
+    client_secret: ''
+  }
+  $auth: any
+
   async fetch () {
     await this.getServices()
     await this.getAPIKey()
-  },
-  methods: {
-    async createService () {
-      if (this.serviceName.length == 0) {
-        alert('Service name is required')
-        return
-      }
-      const accessToken = this.$auth.strategy.token.get()
-      await axios.post(BASE_URL + '/service', {
-        name: this.serviceName,
-        uid: this.$store.state.auth.user.sub
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: accessToken
-        }
-      })
-      await this.getServices()
-    },
-    async getServices () {
-      const accessToken = this.$auth.strategy.token.get()
-      const options = {
-        method: 'GET',
-        url: BASE_URL + '/service',
-        headers: {
-          Authorization: accessToken
-        }
-      }
-      let data = (await axios.request(options)).data
-      data = data.filter(item => item.uid == this.$store.state.auth.user.sub)
-      this.items = data.map(item => {
-        return {
-          name: item.name,
-          serviceWallet: item.serviceWallet,
-          id: item.id
-        }
-      })
-    },
-    async getAPIKey () {
-      const accessToken = this.$auth.strategy.token.get()
-      const options = {
-        method: 'GET',
-        url: BASE_URL + '/user/get-api-key',
-        headers: {
-          Authorization: accessToken
-        }
-      }
-      let data = (await axios.request(options)).data
-      this.apiKey = data
-    }
+  }
 
+  async createService () {
+    if (this.serviceName.length == 0) {
+      alert('Service name is required')
+      return
+    }
+    const accessToken = this.$auth.strategy.token.get()
+    await axios.post(BASE_URL + '/service', {
+      name: this.serviceName,
+      uid: this.$store.state.auth.user.sub
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: accessToken
+      }
+    })
+    await this.getServices()
+  }
+
+  async getServices () {
+    const accessToken = this.$auth.strategy.token.get()
+    const uid = this.$store.state.auth.user.sub
+    const options: AxiosRequestConfig = {
+      method: 'GET',
+      url: BASE_URL + `/service/all/${uid}`,
+      headers: {
+        Authorization: accessToken
+      }
+    }
+    let data: Service[] = (await axios.request(options)).data
+    this.items = data.map(item => {
+      return {
+        name: item.name,
+        wallet: item.serviceWallet,
+        id: item.id
+      } as Item
+    })
+  }
+
+  async getAPIKey () {
+    const accessToken = this.$auth.strategy.token.get()
+    const options: AxiosRequestConfig = {
+      method: 'GET',
+      url: BASE_URL + '/user/get-api-key',
+      headers: {
+        Authorization: accessToken
+      }
+    }
+    let data = (await axios.request(options)).data
+    this.apiKey = data
   }
 }
 </script>

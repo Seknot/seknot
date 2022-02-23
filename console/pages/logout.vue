@@ -5,8 +5,8 @@
 <script>
 export default {
   name: 'logout',
-  mounted(){
-
+  async mounted () {
+    await this.$auth.logout()
   }
 }
 </script>
