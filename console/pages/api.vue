@@ -44,7 +44,7 @@ export default {
       apiKey: {}
     }
   },
-  async mounted () {
+  async fetch () {
     await this.getServices()
     await this.getAPIKey()
   },
