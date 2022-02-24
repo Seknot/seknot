@@ -12,6 +12,13 @@
     </b-form>
     <b-table striped hover :items="items"></b-table>
     <hr>
+    <h1>Service Walletの情報</h1>
+    <b-form-select v-model="selected" :options="options" @change="onServiceSelected"></b-form-select>
+    <span>WalletAddress: {{ selected.wallet }}</span><br>
+    <span>ServiceId: {{ selected.id }}</span><br>
+    <span>Balance: {{ serviceWalletBalance }}</span><br>
+    <span>GASTankBalance: {{ GAStankBalance }}</span>
+    <hr>
     <h1>API Keys</h1>
     このAPI Keyは厳重に保管してください
     <table class="table table-borderless">
@@ -32,7 +39,7 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import axios, { AxiosRequestConfig } from 'axios'
-import { ApiKey, Item, Service } from '~/src/types/apiTypes'
+import { ApiKey, Item, SelectOption, Service } from '~/src/types/apiTypes'
 
 const BASE_URL = 'https://api.seknot.net'
 
@@ -46,7 +53,21 @@ export default class ApiComponent extends Vue {
     client_id: '',
     client_secret: ''
   }
+
+  selected: {
+    id: string
+    wallet: string
+  } = {
+    id: '',
+    wallet: ''
+  }
+
+  options: SelectOption[] = []
+
   $auth: any
+
+  serviceWalletBalance: string | null = null
+  GAStankBalance: string | null = null
 
   async fetch () {
     await this.getServices()
@@ -87,8 +108,17 @@ export default class ApiComponent extends Vue {
         name: item.name,
         wallet: item.serviceWallet,
         id: item.id,
-        delete: "<a>Delete</a>"
+        delete: '<a>Delete</a>'
       } as Item
+    })
+    this.options = data.map(item => {
+      return {
+        text: item.name,
+        value: {
+          id: item.id,
+          wallet: item.serviceWallet
+        }
+      } as SelectOption
     })
   }
 
@@ -96,13 +126,51 @@ export default class ApiComponent extends Vue {
     const accessToken = this.$auth.strategy.token.get()
     const options: AxiosRequestConfig = {
       method: 'GET',
-      url: BASE_URL + '/user/get-api-key',
+      url: BASE_URL + `/service/`,
       headers: {
         Authorization: accessToken
       }
     }
     let data = (await axios.request(options)).data
     this.apiKey = data
+  }
+
+  async onServiceSelected () {
+    if (this.selected.id === '' && this.selected.id === '') {
+      return
+    }
+    this.serviceWalletBalance = 'Loading...'
+    this.GAStankBalance = 'Loading...'
+    this.serviceWalletBalance = await this.getServiceWalletBalance()
+    this.GAStankBalance = await this.getGAStankBalance()
+  }
+
+  async getServiceWalletBalance () {
+    const accessToken = this.$auth.strategy.token.get()
+    const id = this.selected.id
+    const options: AxiosRequestConfig = {
+      method: 'GET',
+      url: BASE_URL + `/service/${id}/balance`,
+      headers: {
+        Authorization: accessToken
+      }
+    }
+    let data = (await axios.request(options)).data
+    return data
+  }
+
+  async getGAStankBalance () {
+    const accessToken = this.$auth.strategy.token.get()
+    const id = this.selected.id
+    const options: AxiosRequestConfig = {
+      method: 'GET',
+      url: BASE_URL + `/service/${id}/deposit`,
+      headers: {
+        Authorization: accessToken
+      }
+    }
+    let data = (await axios.request(options)).data
+    return data
   }
 }
 </script>
