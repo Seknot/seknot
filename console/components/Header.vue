@@ -1,6 +1,6 @@
 <template xmlns="http://www.w3.org/1999/html">
   <div>
-    <BNavbar toggleable="lg" type="light">
+    <BNavbar toggleable="lg" type="light" variant="white">
       <BNavbarBrand href="/">
         <img src="@/static/logo.svg" alt="logo" height="50" />
       </BNavbarBrand>

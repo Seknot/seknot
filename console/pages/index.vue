@@ -9,7 +9,7 @@
       </b-container>
     </b-row>
     <hr>
-    <b-jumbotron bg-variant="light" class="py-3">
+    <b-jumbotron bg-variant="white" border-variant="dark" class="py-3">
       <h3>Beta版の利用について</h3>
       <p>
         現在はSecHack365内におけるClosed Beta Testとして公開しています。<br>

@@ -19,7 +19,10 @@
       ]
     },
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "types": [
+      "@nuxtjs/auth-next"
+    ]
   },
   "include": [
     "src/**/*"

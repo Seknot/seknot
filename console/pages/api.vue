@@ -32,28 +32,9 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import axios, { AxiosRequestConfig } from 'axios'
+import { ApiKey, Item, Service } from '~/src/types/apiTypes'
 
 const BASE_URL = 'https://api.seknot.net'
-
-interface Item {
-  name: string;
-  wallet: string;
-  id: string;
-}
-
-interface ApiKey {
-  client_id: string;
-  client_secret: string;
-}
-
-export interface Service {
-  id: string;
-  uid: string;
-  name: string;
-  serviceWallet: string;
-  created_at: string;
-  updated_at: string;
-}
 
 @Component({
   middleware: ['auth']
@@ -105,7 +86,8 @@ export default class ApiComponent extends Vue {
       return {
         name: item.name,
         wallet: item.serviceWallet,
-        id: item.id
+        id: item.id,
+        delete: "<a>Delete</a>"
       } as Item
     })
   }
