@@ -9,6 +9,7 @@ import {
 import { documentClient } from './DBClient';
 import { Wallet } from './WalletModel';
 import createToken from '../service/token/createToken';
+import { Service } from './ServiceModel';
 
 export interface TokenInput {
   name: string;
@@ -49,6 +50,19 @@ export default class TokenMode {
     const output: GetCommandOutput = await documentClient.send(cmd);
 
     return output.Item as Token;
+  }
+
+  static async getServicesByWallet(wallet: string): Promise<Token[]> {
+    const cmd = new ScanCommand({
+      TableName: 'Tokens',
+      FilterExpression: 'serviceWallet = :serviceWallet',
+      ExpressionAttributeValues: {
+        ':serviceWallet': wallet,
+      },
+    } as ScanCommandInput);
+    const output: ScanCommandOutput = await documentClient.send(cmd);
+
+    return output.Items as Token[];
   }
 
   static async createToken(

@@ -18,6 +18,8 @@
     <span>ServiceId: {{ selected.id }}</span><br>
     <span>Balance: {{ serviceWalletBalance }}</span><br>
     <span>GASTankBalance: {{ GAStankBalance }}</span>
+    <h1>Tokens</h1>
+    <b-table striped hover :items="tokens"></b-table>
     <hr>
     <h1>API Keys</h1>
     このAPI Keyは厳重に保管してください
@@ -48,6 +50,7 @@ const BASE_URL = 'https://api.seknot.net'
 })
 export default class ApiComponent extends Vue {
   items: Item[] = []
+  tokens: any = []
   serviceName: string = ''
   apiKey: ApiKey = {
     client_id: '',
@@ -70,8 +73,8 @@ export default class ApiComponent extends Vue {
   GAStankBalance: string | null = null
 
   async fetch () {
-    await this.getServices()
     await this.getAPIKey()
+    await this.getServices()
   }
 
   async createService () {
@@ -126,7 +129,7 @@ export default class ApiComponent extends Vue {
     const accessToken = this.$auth.strategy.token.get()
     const options: AxiosRequestConfig = {
       method: 'GET',
-      url: BASE_URL + `/service/`,
+      url: BASE_URL + `/user/get-api-key`,
       headers: {
         Authorization: accessToken
       }
@@ -141,13 +144,13 @@ export default class ApiComponent extends Vue {
     }
     this.serviceWalletBalance = 'Loading...'
     this.GAStankBalance = 'Loading...'
-    this.serviceWalletBalance = await this.getServiceWalletBalance()
-    this.GAStankBalance = await this.getGAStankBalance()
+    this.serviceWalletBalance = await this.getServiceWalletBalance(this.selected.id)
+    this.GAStankBalance = await this.getGAStankBalance(this.selected.id)
+    this.tokens = await this.getTokens(this.selected.wallet)
   }
 
-  async getServiceWalletBalance () {
+  async getServiceWalletBalance (id: string) {
     const accessToken = this.$auth.strategy.token.get()
-    const id = this.selected.id
     const options: AxiosRequestConfig = {
       method: 'GET',
       url: BASE_URL + `/service/${id}/balance`,
@@ -159,12 +162,24 @@ export default class ApiComponent extends Vue {
     return data
   }
 
-  async getGAStankBalance () {
+  async getGAStankBalance (id: string) {
     const accessToken = this.$auth.strategy.token.get()
-    const id = this.selected.id
     const options: AxiosRequestConfig = {
       method: 'GET',
       url: BASE_URL + `/service/${id}/deposit`,
+      headers: {
+        Authorization: accessToken
+      }
+    }
+    let data = (await axios.request(options)).data
+    return data
+  }
+
+  async getTokens (address: string) {
+    const accessToken = this.$auth.strategy.token.get()
+    const options: AxiosRequestConfig = {
+      method: 'GET',
+      url: BASE_URL + `/token/all/${address}`,
       headers: {
         Authorization: accessToken
       }

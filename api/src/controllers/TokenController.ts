@@ -32,6 +32,12 @@ export class TokenController {
     return TokenModel.getTokens();
   }
 
+  @Get('/all/:address')
+  @UseAfter(requiredScopes('read:token'))
+  getAllServiceTokens(@Param('address') address: string): Promise<Token[]> {
+    return TokenModel.getServicesByWallet(address);
+  }
+
   @Get('/:address')
   @UseAfter(requiredScopes('read:token'))
   getToken(@Param('address') address: string): Promise<Token> {
