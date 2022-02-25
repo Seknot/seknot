@@ -25,6 +25,7 @@
     このAPI Keyは厳重に保管してください
     <table class="table table-borderless">
       <tbody>
+      <b-button @click="rotateApiKey">Regenerate</b-button>
       <tr>
         <th scope="row">client_id</th>
         <td><samp>{{ apiKey.client_id }}</samp></td>
@@ -129,7 +130,7 @@ export default class ApiComponent extends Vue {
     const accessToken = this.$auth.strategy.token.get()
     const options: AxiosRequestConfig = {
       method: 'GET',
-      url: BASE_URL + `/user/get-api-key`,
+      url: BASE_URL + `/user/${this.$store.state.auth.user.sub}/get`,
       headers: {
         Authorization: accessToken
       }
@@ -186,6 +187,22 @@ export default class ApiComponent extends Vue {
     }
     let data = (await axios.request(options)).data
     return data
+  }
+
+  async rotateApiKey(){
+    const accessToken = this.$auth.strategy.token.get()
+    const options: AxiosRequestConfig = {
+      method: 'GET',
+      url: BASE_URL + `/user/${this.$store.state.auth.user.sub}/rotate`,
+      headers: {
+        Authorization: accessToken
+      }
+    }
+    let data = (await axios.request(options)).data
+    this.apiKey = {
+      client_id: data.client_id,
+      client_secret: data.client_secret
+    } as ApiKey
   }
 }
 </script>

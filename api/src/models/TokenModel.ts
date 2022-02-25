@@ -9,7 +9,6 @@ import {
 import { documentClient } from './DBClient';
 import { Wallet } from './WalletModel';
 import createToken from '../service/token/createToken';
-import { Service } from './ServiceModel';
 
 export interface TokenInput {
   name: string;
@@ -30,7 +29,7 @@ export interface Token {
   serviceWallet?: string;
 }
 
-export default class TokenMode {
+export default class TokenModel {
   static async getTokens(): Promise<Token[]> {
     const cmd = new ScanCommand({
       TableName: 'Tokens',
