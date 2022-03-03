@@ -68,12 +68,30 @@ export class TokenService {
 
     const types = {
       TransferWithAuthorization: [
-        { name: 'from', type: 'address' },
-        { name: 'to', type: 'address' },
-        { name: 'value', type: 'uint256' },
-        { name: 'validAfter', type: 'uint256' },
-        { name: 'validBefore', type: 'uint256' },
-        { name: 'nonce', type: 'bytes32' },
+        {
+          name: 'from',
+          type: 'address',
+        },
+        {
+          name: 'to',
+          type: 'address',
+        },
+        {
+          name: 'value',
+          type: 'uint256',
+        },
+        {
+          name: 'validAfter',
+          type: 'uint256',
+        },
+        {
+          name: 'validBefore',
+          type: 'uint256',
+        },
+        {
+          name: 'nonce',
+          type: 'bytes32',
+        },
       ],
     };
 
@@ -191,9 +209,10 @@ export class GasService {
   async depositGAS(
     balance: number,
   ): Promise<ethers.providers.TransactionReceipt> {
-    const tx = await this.serviceWallet.sendTransaction({
+    let tx = await this.serviceWallet.sendTransaction({
       to: this.ITX_Contract,
       value: ethers.utils.parseUnits(String(balance), 'ether'),
+      gasPrice: 8 * 1e10,
     });
 
     return await tx.wait();

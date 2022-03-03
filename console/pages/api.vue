@@ -18,13 +18,35 @@
             <hr>
             <h3>Service Walletの情報</h3>
             <b-form-select v-model="selected" :options="options" @change="onServiceSelected"></b-form-select>
-            <p class="p-3">
-              <span>WalletAddress: <code>{{ selected.wallet }}</code></span><br>
-              <span>ServiceId: <code>{{ selected.id }}</code></span><br>
-              <span>Balance: <code>{{ serviceWalletBalance }} MATIC</code></span><br>
-              <span>GASTankBalance: <code>{{ GAStankBalance }} MATIC</code></span><br>
-              <span>NetWork: <code>Polygon (Munbai)</code></span>
-            </p>
+            <div v-if="selected.id != ''">
+              <p class="p-3">
+                <span>WalletAddress: <code>{{ selected.wallet }}</code></span><br>
+                <span>ServiceId: <code>{{ selected.id }}</code></span><br>
+                <span>Balance: <code>{{ serviceWalletBalance }} MATIC</code></span><br>
+                <span>GASTankBalance: <code>{{ GAStankBalance }} MATIC</code></span><br>
+                <span>NetWork: <code>Polygon (Munbai)</code></span>
+              </p>
+              <p><a href="polygonscan.com">Polygon Faucet</a>でWalletAddressを指定して送信することでTestnet用の<code>MATIC</code>を入手することができます
+              </p>
+
+              <h3>Gas TankへDeposit</h3>
+              <p>
+                Seknotを使用してトークンの移動を行う際に発生するGASは、GasTankから利用されます。<br>
+                サービスを運用する際には、一定量のGASがGAS Tankに存在する必要があります。<br>
+                なお、一度Gas TankにDepositされた<code>MATIC</code>は現時点では戻すことができないので注意してください。<br>
+                また、Service Walletに存在する量を超えてDepositすることはできません。<br>
+              </p>
+              Amount to Deposit
+              <b-form inline class="py-2">
+                <b-form-input
+                  v-model="depositAmount"
+                  class="mb-2 mr-sm-2 mb-sm-0"
+                  placeholder="Deposit Amount"
+                ></b-form-input>
+                <b-button variant="primary" @click="depositGAS">Deposit</b-button>
+              </b-form>
+              <span>{{ gasDepositResult }}</span>
+            </div>
           </b-container>
         </b-card-text>
       </b-tab>
@@ -51,7 +73,7 @@
               ref="modal"
               title="Issue new Token"
               @ok="tokenConfirm"
-              @opened="resetToken"
+              @show="resetToken"
             >
               <form ref="form" @submit.stop.prevent="handleSubmit">
                 <b-form-group
@@ -203,10 +225,6 @@ export default class ApiComponent extends Vue {
 
   tokenAddress: string = ''
   isCreating: boolean = false
-
-  mounted(){
-    this.$bvModal.show('issue-token')
-  }
 
   async createService () {
     if (this.serviceName.length == 0) {
@@ -388,6 +406,25 @@ export default class ApiComponent extends Vue {
       }
     })
     return response.data.address
+  }
+
+  depositAmount: number = 0.0
+  gasDepositResult: string = ''
+
+  async depositGAS () {
+    this.gasDepositResult = 'Sending TX...'
+    const id = this.selected.id
+    const accessToken = this.$auth.strategy.token.get()
+    await axios.post(BASE_URL + `/service/${id}/deposit`, {
+      value: this.depositAmount
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: accessToken
+      }
+    })
+    this.gasDepositResult = ''
+    this.$bvModal.msgBoxOk(this.depositAmount + 'MATICをGasTankに移動しました!')
   }
 }
 </script>
