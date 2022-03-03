@@ -33,6 +33,25 @@ export class WalletController {
     return output;
   }
 
+  @Get('/all/:serviceId')
+  @UseAfter(requiredScopes('read:wallet'))
+  async getAllWalletsByServiceId(
+    @Param('serviceId') serviceId: string,
+  ): Promise<WalletOutput[]> {
+    const wallets: Wallet[] = await WalletModel.getWalletsByServiceId(
+      serviceId,
+    );
+    const output: WalletOutput[] = wallets.map((wallet) => {
+      return {
+        address: wallet.address,
+        service: wallet.service,
+        created_at: wallet.created_at,
+      } as WalletOutput;
+    });
+
+    return output;
+  }
+
   @Get('/:address')
   @UseAfter(requiredScopes('read:wallet'))
   getWallet(@Param('address') address: string): Promise<WalletOutput> {

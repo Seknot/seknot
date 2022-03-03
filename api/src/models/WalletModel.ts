@@ -39,6 +39,19 @@ export default class WalletModel {
     return output.Items as Wallet[];
   }
 
+  static async getWalletsByServiceId(serviceId: string): Promise<Wallet[]> {
+    const cmd = new ScanCommand({
+      TableName: 'Wallets',
+      FilterExpression: 'service = :service',
+      ExpressionAttributeValues: {
+        ':service': serviceId,
+      },
+    } as ScanCommandInput);
+    const output: ScanCommandOutput = await documentClient.send(cmd);
+
+    return output.Items as Wallet[];
+  }
+
   static async createWallet(serviceId: string): Promise<Wallet> {
     const wallet: ethers.Wallet = await issueWallet();
     const newWallet = {

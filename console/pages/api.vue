@@ -26,7 +26,8 @@
                 <span>GASTankBalance: <code>{{ GAStankBalance }} MATIC</code></span><br>
                 <span>NetWork: <code>Polygon (Munbai)</code></span>
               </p>
-              <p><a href="https://faucet.polygon.technology/">Polygon Faucet</a>でWalletAddressを指定して送信することでTestnet用の<code>MATIC</code>を入手することができます
+              <p><a href="https://faucet.polygon.technology/">Polygon
+                Faucet</a>でWalletAddressを指定して送信することでTestnet用の<code>MATIC</code>を入手することができます
               </p>
 
               <h3>Gas TankへDeposit</h3>
@@ -150,6 +151,17 @@
           </b-container>
         </b-card-text>
       </b-tab>
+      <b-tab title="Wallets">
+        <b-card-text>
+          <b-container class="pt-3">
+            <h1>Wallets</h1>
+            Service:
+            <b-form-select v-model="selected" :options="options" @change="onServiceSelected"></b-form-select>
+            <b-button variant="primary" @click="createWallet" v-if="selected.id != ''">Create Wallet</b-button>
+            <b-table striped hover :items="wallets" responsive></b-table>
+          </b-container>
+        </b-card-text>
+      </b-tab>
       <b-tab title="API Keys">
         <b-card-text>
           <b-container class="pt-3">
@@ -187,6 +199,7 @@ const BASE_URL = 'https://api.seknot.net'
 })
 export default class ApiComponent extends Vue {
   items: Item[] = []
+  wallets: any = []
   tokens: any = []
   serviceName: string = ''
   apiKey: ApiKey = {
@@ -273,6 +286,18 @@ export default class ApiComponent extends Vue {
     })
   }
 
+  async getWallets () {
+    const accessToken = this.$auth.strategy.token.get()
+    const options: AxiosRequestConfig = {
+      method: 'GET',
+      url: BASE_URL + `/wallet/all/${this.selected.id}`,
+      headers: {
+        Authorization: accessToken
+      }
+    }
+    return (await axios.request(options)).data
+  }
+
   async getAPIKey () {
     const accessToken = this.$auth.strategy.token.get()
     const options: AxiosRequestConfig = {
@@ -295,6 +320,8 @@ export default class ApiComponent extends Vue {
     this.serviceWalletBalance = await this.getServiceWalletBalance(this.selected.id)
     this.GAStankBalance = await this.getGAStankBalance(this.selected.id)
     this.tokens = await this.getTokens(this.selected.wallet)
+    console.log(await this.getWallets())
+    this.wallets = await this.getWallets()
   }
 
   async getServiceWalletBalance (id: string) {
@@ -425,6 +452,19 @@ export default class ApiComponent extends Vue {
     })
     this.gasDepositResult = ''
     this.$bvModal.msgBoxOk(this.depositAmount + 'MATICをGasTankに移動しました!')
+  }
+
+  async createWallet(){
+    const accessToken = this.$auth.strategy.token.get()
+    await axios.post(BASE_URL + '/wallet', {
+      serviceId: this.selected.id
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: accessToken
+      }
+    })
+    await this.getWallets()
   }
 }
 </script>
