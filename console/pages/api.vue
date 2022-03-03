@@ -26,7 +26,7 @@
                 <span>GASTankBalance: <code>{{ GAStankBalance }} MATIC</code></span><br>
                 <span>NetWork: <code>Polygon (Munbai)</code></span>
               </p>
-              <p><a href="polygonscan.com">Polygon Faucet</a>でWalletAddressを指定して送信することでTestnet用の<code>MATIC</code>を入手することができます
+              <p><a href="https://faucet.polygon.technology/">Polygon Faucet</a>でWalletAddressを指定して送信することでTestnet用の<code>MATIC</code>を入手することができます
               </p>
 
               <h3>Gas TankへDeposit</h3>
