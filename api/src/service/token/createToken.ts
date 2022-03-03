@@ -1,6 +1,7 @@
 import { ethers } from 'ethers';
 import { Token } from '../../models/TokenModel';
 import { Wallet } from '../../models/WalletModel';
+import { InternalServerError } from 'routing-controllers';
 
 const compiled = require('../../assets/token/build/Token.json');
 
@@ -19,7 +20,7 @@ export default async function createToken(
     compiled.bytecode,
     wallet,
   );
-  console.log('Here');
+
   console.log(
     token.name,
     token.version,
@@ -27,13 +28,29 @@ export default async function createToken(
     token.decimals,
     token.totalSupply,
   );
-  const instance = await contract.deploy(
+
+  const tx = contract.getDeployTransaction(
     token.name,
     token.version,
     token.symbol,
     token.decimals,
     token.totalSupply,
   );
+  tx.from = '0x9193ab3DCadc8F0B1A0ed19CB0395247f387222c';
+
+  const overrides = {
+    gasPrice: 8 * 1e10,
+  };
+
+  const instance = await contract.deploy(
+    token.name,
+    token.version,
+    token.symbol,
+    token.decimals,
+    token.totalSupply,
+    overrides,
+  );
+
   await instance.deployed();
   token.address = instance.address;
 

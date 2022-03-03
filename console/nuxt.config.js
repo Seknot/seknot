@@ -44,6 +44,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/typescript
     "@nuxt/typescript-build",
+    "vue-sweetalert2/nuxt",
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
