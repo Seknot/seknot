@@ -17,7 +17,10 @@
             <b-table striped hover :items="items" responsive></b-table>
             <hr>
             <h3>Service Walletの情報</h3>
-            <b-form-select v-model="selected" :options="options" @change="onServiceSelected"></b-form-select>
+            <b-form inline class="py-2">
+              <b-form-select v-model="selected" :options="options" @change="onServiceSelected"></b-form-select>
+              <b-button variant="success" class="mx-2" @click="onServiceSelected">Reload</b-button>
+            </b-form>
             <div v-if="selected.id != ''">
               <p class="p-3">
                 <span>WalletAddress: <code>{{ selected.wallet }}</code></span><br>
@@ -315,6 +318,19 @@ export default class ApiComponent extends Vue {
     return (await axios.request(options)).data
   }
 
+  async getAPIKey () {
+    const accessToken = this.$auth.strategy.token.get()
+    const options: AxiosRequestConfig = {
+      method: 'GET',
+      url: BASE_URL + `/user/get-api-key`,
+      headers: {
+        Authorization: accessToken
+      }
+    }
+    let data = (await axios.request(options)).data
+    this.apiKey = data
+  }
+
   // async getAPIKey () {
   //   const accessToken = this.$auth.strategy.token.get()
   //   const options: AxiosRequestConfig = {
@@ -328,18 +344,6 @@ export default class ApiComponent extends Vue {
   //   this.apiKey = data
   // }
 
-  async getAPIKey () {
-    const accessToken = this.$auth.strategy.token.get()
-    const options: AxiosRequestConfig = {
-      method: 'GET',
-      url: BASE_URL + `/user/get-api-key`,
-      headers: {
-        Authorization: accessToken
-      }
-    }
-    let data = (await axios.request(options)).data
-    this.apiKey = data
-  }
 
   async onServiceSelected () {
     if (this.selected.id === '' && this.selected.id === '') {
