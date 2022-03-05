@@ -165,6 +165,7 @@
             ></b-form-select>
             <b-button variant="primary" @click="createWallet" v-if="selected.id != ''">Create Wallet</b-button>
             <b-button variant="success" @click="onTokenSelected" v-if="selectedToken != undefined">Reload</b-button>
+            <b-table striped hover :items="wallets" responsive></b-table>
           </b-container>
         </b-card-text>
       </b-tab>
@@ -363,6 +364,7 @@ export default class ApiComponent extends Vue {
   }
 
   async onTokenSelected () {
+    console.log(await this.getWallets())
     this.wallets = await Promise.all((await this.getWallets()).map(async (item: any) => {
       return {
         address: item.address,
