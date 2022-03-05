@@ -50,10 +50,28 @@ export class ApiService {
       body: JSON.stringify(params),
     };
     const output = JSON.parse(await request(options));
-    return {
+    const apiKey = {
       client_id: output.client_id,
       client_secret: output.client_secret,
     } as APIKey;
+
+    await request({
+      method: 'POST',
+      url: process.env.AUTH0_MANEGE_AUDIENCE + 'client-grans',
+      headers: {
+        'content-type': 'application/json',
+        authorization: 'Bearer ' + this.accessToken,
+      },
+      body: JSON.stringify({
+        client_id: apiKey.client_id,
+        audience: 'https://api.seknot.net',
+        scope: [
+          'read:wallet create:wallet transfer:token issue:token delete:wallet read:service',
+        ],
+      }),
+    });
+
+    return apiKey;
   }
 
   async rotateApiKey(client_id: string) {

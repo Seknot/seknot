@@ -139,7 +139,7 @@ export class TokenService {
     const tx = {
       to: this.token.address,
       data: encodedData,
-      gas: '100000',
+      gas: '7000000',
       schedule: 'fast',
     };
 

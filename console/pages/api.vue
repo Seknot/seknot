@@ -157,8 +157,11 @@
             <h1>Wallets</h1>
             Service:
             <b-form-select v-model="selected" :options="options" @change="onServiceSelected"></b-form-select>
+            <b-form-select v-model="selectedToken" :options="TokenOptions" @change="onTokenSelected"
+                           v-if="TokenOptions.length != 0"
+            ></b-form-select>
             <b-button variant="primary" @click="createWallet" v-if="selected.id != ''">Create Wallet</b-button>
-            <b-table striped hover :items="wallets" responsive></b-table>
+            <b-button variant="success" @click="onTokenSelected" v-if="selectedToken != undefined">Reload</b-button>
           </b-container>
         </b-card-text>
       </b-tab>
@@ -169,7 +172,7 @@
             このAPI Keyは厳重に保管してください
             <table class="table table-borderless table-responsive">
               <tbody>
-              <b-button @click="rotateApiKey">Regenerate</b-button>
+<!--              <b-button @click="rotateApiKey">Regenerate</b-button>-->
               <tr>
                 <th scope="row">client_id</th>
                 <td><code>{{ apiKey.client_id }}</code></td>
@@ -230,6 +233,8 @@ export default class ApiComponent extends Vue {
   tokenTotalSupply: number = 0
   tokenSymbol: string = ''
   tokenDecimals: number = 0
+
+  TokenOptions: any = []
 
   async fetch () {
     await this.getAPIKey()
@@ -298,11 +303,36 @@ export default class ApiComponent extends Vue {
     return (await axios.request(options)).data
   }
 
+  async getBalance (walletAddress: string) {
+    const accessToken = this.$auth.strategy.token.get()
+    const options: AxiosRequestConfig = {
+      method: 'GET',
+      url: BASE_URL + `/token/${this.selectedToken}/${walletAddress}/balance`,
+      headers: {
+        Authorization: accessToken
+      }
+    }
+    return (await axios.request(options)).data
+  }
+
+  // async getAPIKey () {
+  //   const accessToken = this.$auth.strategy.token.get()
+  //   const options: AxiosRequestConfig = {
+  //     method: 'GET',
+  //     url: BASE_URL + `/user/${this.$store.state.auth.user.sub}/get`,
+  //     headers: {
+  //       Authorization: accessToken
+  //     }
+  //   }
+  //   let data = (await axios.request(options)).data
+  //   this.apiKey = data
+  // }
+
   async getAPIKey () {
     const accessToken = this.$auth.strategy.token.get()
     const options: AxiosRequestConfig = {
       method: 'GET',
-      url: BASE_URL + `/user/${this.$store.state.auth.user.sub}/get`,
+      url: BASE_URL + `/user/get-api-key`,
       headers: {
         Authorization: accessToken
       }
@@ -320,8 +350,26 @@ export default class ApiComponent extends Vue {
     this.serviceWalletBalance = await this.getServiceWalletBalance(this.selected.id)
     this.GAStankBalance = await this.getGAStankBalance(this.selected.id)
     this.tokens = await this.getTokens(this.selected.wallet)
-    console.log(await this.getWallets())
-    this.wallets = await this.getWallets()
+    this.TokenOptions = this.tokens.map((token: { name: any; address: any }) => {
+      return {
+        text: token.name,
+        value: token.address
+      }
+    })
+  }
+
+  async onTokenSelected () {
+    this.wallets = await Promise.all((await this.getWallets()).map(async (item: any) => {
+      return {
+        address: item.address,
+        created_at: item.created_at,
+        balance: await this.getBalance(item.address)
+      }
+    }))
+  }
+
+  async addToken (address: string) {
+    alert(address)
   }
 
   async getServiceWalletBalance (id: string) {
@@ -454,7 +502,7 @@ export default class ApiComponent extends Vue {
     this.$bvModal.msgBoxOk(this.depositAmount + 'MATICをGasTankに移動しました!')
   }
 
-  async createWallet(){
+  async createWallet () {
     const accessToken = this.$auth.strategy.token.get()
     await axios.post(BASE_URL + '/wallet', {
       serviceId: this.selected.id
@@ -466,6 +514,9 @@ export default class ApiComponent extends Vue {
     })
     await this.getWallets()
   }
+
+  selectedToken: any = {}
+
 }
 </script>
 
