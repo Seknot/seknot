@@ -14,7 +14,7 @@
       <p>
         現在Beta版としてSeknotを公開しています。<br>
         利用にはアカウント登録が必要です<br>
-        また、このSekHackについての詳細は<a href="https://sechack365.nict.go.jp/presentation/">2021年度 SecHack365成果発表会</a>で発表予定ですので興味の有る方は是非お越しください。
+        また、このSeknotはSekHack365を通して開発し、<a href="https://sechack365.nict.go.jp/presentation/">2021年度 SecHack365成果発表会</a>にて発表しました
       </p>
       <hr />
       <h5>Beta版を試す方へ</h5>
